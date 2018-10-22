@@ -1,0 +1,45 @@
+sudo: false
+
+language: python
+
+python:
+  - "2.6"
+  - "2.7"
+  - "3.4"
+  - "3.5"
+  - "3.6"
+  - "3.7"
+
+env:
+  global:
+    # Doctr deploy key for addisonlynch/pyTD
+    - secure: "I6xa7gmoDuKAdForRLD8bax6D1IG9wfWzUUZGUH+zrio7888tx2DMzbEowML3rfL2Kg40F6lkmuhmH/ak4bgOLIL5GbdTIDAQEo9hNTV4WdeDnAX5InQkzzpPuAMXxtfZKvDN3UVCKv5lCFoTtqjpB0OgOPhXMExmEljlPEqtlem1jmtzZYyetW9ZRYZ/AhfzvlVseqs7qUF0r7yJmE+Bh2Rtx8lgYcGXSnwT72PqQvaMbKHpRA5Cb7wp35Yxyq1hRJsMoCGfMWFjNAMyHwKuh/iHJ3g8B/A78aKnMHiZwjuKrjbUOxAdGivkAGtlqhVQ9jLNT1RO4AkLBFz6RkKALsMc01iPq+S2crZ85GIoJp+piF8C+IGEaI5AcpedvST0sAqSYCgTe/uWWO4oL1S645yJblZHR7bSg1FQAxWkYnB4ndnKnFKhQSPvx/6JH2IXcz7+LT3xKRanJqQ/OmZlb1Rm1Iqfzfsa1+hYdXAacxUGZM3P2PZXUUanAnKPjo3ckwd3Kv+gDFmFvlIqyI45jzLesGyAgyBlCsOMQ+th5PXus5cgp4Rn7wfZ1r6krvx99cM0Ihh89qOsJcHN/u1OD/dC2JyMFJHzou1wHhG9vKCMTHJcmWUAru5RDctPw1iIuUkQPIui+3t00wtyM24q1Jsw45J/UCZQtGsV1CmZsg="
+
+install:
+  - pip install -qq flake8
+  - pip install codecov
+  - if [[ $TRAVIS_PYTHON_VERSION == 3.7 ]]; then
+      pip install doctr sphinx sphinx_rtd_theme ipython matplotlib;
+      pip install sphinxcontrib-napoleon;
+    fi
+  - python setup.py install
+
+script:
+  - coverage run setup.py pytest
+  - flake8 --version
+  - flake8 pyTD
+
+after_success:
+  - |
+    if [[ $TRAVIS_PYTHON_VERSION == 3.7 ]]; then
+      cd docs
+      make html && make html
+      cd ..
+      doctr deploy devel --build-tags
+      if [[ -z ${TRAVIS_TAG} ]]; then
+        echo "Not a tagged build."
+      else
+        doctr deploy stable --build-tags
+      fi
+    fi
+  - codecov --token='34052138-4c31-4bf0-96cf-fbc2f1e56e65'
