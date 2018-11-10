@@ -22,7 +22,7 @@
 
 import json
 import pytest
-from pyTD.compat import MagicMock
+from mock import MagicMock
 
 from pyTD.auth import TDAuthManager
 from pyTD.cache import MemCache

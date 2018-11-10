@@ -47,11 +47,9 @@ if PY3:
     from urllib.parse import urlparse, urlencode, parse_qs
     from io import StringIO
     from http.server import HTTPServer, BaseHTTPRequestHandler
-    from mock import MagicMock
 else:
     from urllib2 import HTTPError  # noqa
     from urlparse import urlparse, parse_qs  # noqa
     from urllib import urlencode  # noqa
     from BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler  # noqa
     import StringIO  # noqa
-    from mock import MagicMock # noqa

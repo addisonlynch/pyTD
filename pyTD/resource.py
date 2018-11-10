@@ -76,3 +76,45 @@ class Get(Resource):
         if "error" in json_data:
             raise TDQueryError(response=response)
         return json_data
+
+
+class Post(Resource):
+
+    @property
+    def data(self):
+        raise NotImplementedError
+
+    def post(self, url=None, params=None, data=None):
+        url = url or self.url
+        params = params or self.params
+        data = data or self.data
+
+        response = self.api.request("POST", url, params=params, data=data,
+                                    headers=self.headers)
+        return response
+
+
+class Put(Resource):
+
+    @property
+    def data(self):
+        raise NotImplementedError
+
+    def put(self, url=None, params=None, data=None):
+        url = url or self.url
+        params = params or self.params
+        data = data or self.data
+
+        response = self.api.request("PUT", url, params=params, data=data,
+                                    headers=self.headers)
+        return response
+
+
+class Delete(Resource):
+
+    def delete(self, params=None, data=None, url=None):
+        url = url or self.url
+        params = params or self.params
+        data = data or self.data
+        response = self.api.request("DELETE", url, params=params, data=data)
+        return response

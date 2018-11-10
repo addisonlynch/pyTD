@@ -282,6 +282,102 @@ Instruments
 
     get_instruments("AAP.*", projection="symbol-regex")
 
+.. _readme.accounts_trading:
+
+Accounts & Trading
+------------------
+
+Accounts are managed through methods of the ``pyTD.account.Account class``. First create an ``Account`` instance by passing a valid TD Ameritrade account number.
+
+.. code-block:: python
+
+    from pyTD.account import Account
+
+    # Pass TD Ameritrade account number
+    acc = Account("921953333")
+
+Then, a variety of methods provide functionality for account balance, ordering, and watch lists.
+
+.. _readme.orders:
+
+Orders
+------
+
+There are 4 methods provided for orders:
+
+1. ``get_order``
+2. ``cancel_order``
+3. ``place_order``
+4. ``replace_order``
+
+
+Retrieve orders
+~~~~~~~~~~~~~~~
+
+`Get all orders for an account <https://developer.tdameritrade.com/account-access/apis/get/accounts/%7BaccountId%7D/orders-0>`__
+
+.. code-block:: python
+
+    account.get_orders()
+
+`Get an invididual existing order <https://developer.tdameritrade.com/account-access/apis/get/accounts/%7BaccountId%7D/orders/%7BorderId%7D-0>`__
+
+.. code-block:: python
+
+    account.get_order("939999200")
+
+`Get an existing order by query <https://developer.tdameritrade.com/account-access/apis/get/orders-0>`__
+
+.. code-block:: python
+
+    # By status
+    account.get_order(status='PENDING')
+
+    # By date range
+    account.get_order(fromEnteredTime="2018-02-02", toEnteredTime="2018-03-02")
+
+`Place an order <https://developer.tdameritrade.com/account-access/apis/post/accounts/%7BaccountId%7D/orders-0>`__
+
+.. code-block:: python
+
+    payload = {
+      "assetType": "'EQUITY' or 'OPTION' or 'INDEX' or 'MUTUAL_FUND' or 'CASH_EQUIVALENT' or 'FIXED_INCOME' or 'CURRENCY'",
+      "cusip": "string",
+      "symbol": "string",
+      "description": "string",
+      "type": "'VANILLA' or 'BINARY' or 'BARRIER'",
+      "putCall": "'PUT' or 'CALL'",
+      "underlyingSymbol": "string",
+      "optionMultiplier": 0,
+      "optionDeliverables": [
+        {
+          "symbol": "string",
+          "deliverableUnits": 0,
+          "currencyType": "'USD' or 'CAD' or 'EUR' or 'JPY'",
+          "assetType": "'EQUITY' or 'OPTION' or 'INDEX' or 'MUTUAL_FUND' or 'CASH_EQUIVALENT' or 'FIXED_INCOME' or 'CURRENCY'"
+        }
+    ]}
+
+    try:
+        account.place_order(payload)
+    except OrderNotPlaced as e:
+        ...
+
+`Cancel an order <https://developer.tdameritrade.com/account-access/apis/delete/accounts/%7BaccountId%7D/orders/%7BorderId%7D-0>`__
+
+.. code-block:: python
+
+    account.cancel_order("999392999")
+
+`Replace one order with another <https://developer.tdameritrade.com/account-access/apis/put/accounts/%7BaccountId%7D/orders/%7BorderId%7D-0>`__
+
+.. code-block:: python
+
+    account.cancel_order("999392999", payload)
+
+
+
+
 
 
 .. _readme.logging:
