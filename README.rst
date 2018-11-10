@@ -16,7 +16,7 @@ pyTD
 .. image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
     :target: https://opensource.org/licenses/Apache-2.0
 
-Python Developer Kit to `TD Ameritrade for Developers
+A robust Python Developer Kit to `TD Ameritrade for Developers
 <https://developer.tdameritrade.com/>`__. Includes pre-defined classes and functions capable of obtaining market data and managing TD Ameritrade brokerage accounts.
 
 Highlights:
@@ -317,7 +317,7 @@ By default, logging to the console is disabled in pyTD, but can be set in a few 
 Supported Python Versions
 -------------------------
 
-Python versions 2.6+ and 3.4+ are supported by pyTD.
+Python versions 2.7 and 3.4+ are supported by pyTD.
 
 
 .. _readme.faq:

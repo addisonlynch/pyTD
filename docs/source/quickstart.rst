@@ -16,8 +16,7 @@ Prerequisites
 -------------
 
 :Python Knowledge: You need to know at least a little Python to use pyTD; it's
-                   a Python wrapper after all. PRAW supports `Python 2.6
-                   to 2.7`_,
+                   a Python wrapper after all. PRAW supports `Python 2.7`_,
                    and `Python 3.4 to 3.7`_.
 
 :TD Ameritrade Knowledge: A basic understanding of how TD Ameritrade's
@@ -28,7 +27,7 @@ Prerequisites
 :TD Ameritrade Developer Account: This is a **separate account** from your TD
                       brokerage accounts(s).
 
-.. _`Python 2.6 to 2.7`: https://docs.python.org/2/tutorial/index.html
+.. _`Python 2.7`: https://docs.python.org/2/tutorial/index.html
 .. _`Python 3.4 to 3.7`: https://docs.python.org/3/tutorial/index.html
 .. _`TD Ameritrade documentation`: https://developer.tdameritrade.com/apis
 

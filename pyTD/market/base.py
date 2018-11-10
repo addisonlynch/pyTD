@@ -65,7 +65,7 @@ class MarketData(Get):
 
     def _convert_output(self, out):
         import pandas as pd
-        return pd.DataFrame(out).T
+        return pd.DataFrame(out)
 
     def execute(self):
         out = self.get()

@@ -67,7 +67,9 @@ class TestQuotes(object):
     def test_quotes_pandas(self):
         df = get_quotes("AAPL")
         assert isinstance(df, pd.DataFrame)
-        assert df.index[0] == "AAPL"
+        assert "AAPL" in df
+
+        assert len(df) == 41
 
     def test_quotes_bad_symbol(self):
         with pytest.raises(ResourceNotFound):
@@ -118,8 +120,8 @@ class TestMarketHours(object):
     def test_hours_default(self):
         data = get_market_hours()
 
-        assert len(data) == 2
-        assert data.index[0] == "start"
+        assert len(data) == 4
+        assert data.index[0] == "date"
 
     def test_hours_json(self):
         date = now()
@@ -130,13 +132,13 @@ class TestMarketHours(object):
         date = now()
         data = get_market_hours("EQUITY", date)
         assert isinstance(data, pd.DataFrame)
-        assert data.index[0] == "start"
+        assert data.index[0] == "date"
 
     def test_hours_batch(self):
         data = get_market_hours(["EQUITY", "OPTION"])
 
-        assert len(data) == 2
-        assert isinstance(data["equity"], pd.DataFrame)
+        assert len(data) == 4
+        assert isinstance(data["equity"], pd.Series)
 
 
 @pytest.mark.webtest
@@ -235,16 +237,6 @@ class TestPriceHistory(object):
         assert data.iloc[-1].name.date() == datetime.date(2018, 2, 9)
 
         assert pd.infer_freq(data.index) == "B"
-
-    def test_history_minutely(self):
-        start = datetime.date(2018, 10, 16)
-        end = datetime.date(2018, 10, 19)
-
-        data = get_price_history("AAPL", start_date=start, end_date=end,
-                                 period_type="day", frequency_type="minute",
-                                 frequency=1, output_format='json')
-
-        assert len(data) == 2001
 
 
 class TestFundamentals(object):

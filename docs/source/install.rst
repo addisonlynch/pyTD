@@ -4,7 +4,7 @@
 Installing pyTD
 ===============
 
-pyTD supports Python 2.6, 2.7, 3.4, 3.5, 3.6, and 3.7. The recommended
+pyTD supports Python 2.7, 3.4, 3.5, 3.6, and 3.7. The recommended
 installation method is via ``pip``:
 
 .. code-block:: bash

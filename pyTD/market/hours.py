@@ -21,6 +21,7 @@
 # SOFTWARE.
 
 import datetime
+import pandas as pd
 
 from pyTD.market.base import MarketData
 from pyTD.utils import _handle_lists
@@ -57,7 +58,7 @@ class MarketHours(MarketData):
         err_msg = "Please enter one more most markets (EQUITY, OPTION, etc.)"\
                   "for retrieval."
         self.markets = _handle_lists(markets, err_msg=err_msg)
-        if not set(self.markets).issubset(self._MARKETS):
+        if not set(self.markets).issubset(set(self._MARKETS)):
             raise ValueError("Please input valid markets for hours retrieval.")
         super(MarketHours, self).__init__(output_format, api)
 
@@ -73,17 +74,6 @@ class MarketHours(MarketData):
         return 'hours'
 
     def _convert_output(self, out):
-        if "FUTURE" in self.markets:
-            return out
-        import pandas as pd
-        markets = [sym.lower() for sym in self.markets]
-        data = {market: out[market][self._MARKETS[market.upper()]] for market
-                in markets}
-        for market in markets:
-            if market == "forex":
-                hours = {"forex": data[market]}
-            else:
-                hours = data[market]["sessionHours"]
-                hours = {k: hours[k][0] for k in hours}
-            data[market] = pd.DataFrame(hours).sort_index(ascending=False)
-        return data[markets[0]] if len(markets) == 1 else data
+        markets = [market.lower() for market in self.markets]
+        data = {market: out[market][market] for market in markets}
+        return pd.DataFrame(data)

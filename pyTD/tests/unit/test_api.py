@@ -72,13 +72,6 @@ class TestAPI(object):
         assert a.access_valid is True
         assert a.auth_valid is True
 
-    def test_api_no_ssl(self, monkeypatch, sample_oid, sample_uri):
-
-        monkeypatch.setattr('os.path.isfile', lambda x: False)
-
-        with pytest.raises(SSLError):
-            api(consumer_key=sample_oid, callback_url=sample_uri)
-
 
 class TestDefaultAPI(object):
 

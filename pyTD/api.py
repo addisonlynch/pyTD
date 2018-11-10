@@ -33,6 +33,7 @@ from pyTD import CONFIG_DIR
 from pyTD import DEFAULT_SSL_DIR
 
 from pyTD.auth import TDAuthManager
+from pyTD.auth.tokens import RefreshToken
 from pyTD.cache import DiskCache, MemCache
 from pyTD.utils import yn_require, bprint, gprint, rprint, _init_session
 from pyTD.utils.exceptions import (Redirection, ValidationError,
@@ -162,18 +163,20 @@ class api(object):
         self.ssl_key_path = os.path.join(self.ssl_dir, 'key.pem')
         self.cache = kwargs.get("cache")
 
+        # Used for testing only, not documented otherwise
+        env_token = os.getenv("TD_REFRESH_TOKEN")
+
         # Use passed token cache, else create one based on store_tokens
-        if self.store_tokens is True:
+        if self.store_tokens is True and not env_token:
             self.cache = self.cache or DiskCache(CONFIG_DIR, self.consumer_key)
-        else:
+        elif self.store_tokens is False and not env_token:
             self.cache = self.cache or MemCache()
-
-        cert_exists = os.path.isfile(self.ssl_cert_path)
-        key_exists = os.path.isfile(self.ssl_key_path)
-
-        if not cert_exists or not key_exists:
-            raise SSLError("Could not find SSL files. Place in %s "
-                           "or run pyTD.configure()" % self.ssl_dir)
+        else:
+            data = env_token.split("/", 2)
+            t = RefreshToken(access_time=int(data[0]), expires_in=int(data[1]),
+                             token=data[2])
+            self.cache = MemCache()
+            self.cache.refresh_token = t
 
         # Set up an authorization manager
         self.auth = TDAuthManager(self.cache, self.consumer_key,

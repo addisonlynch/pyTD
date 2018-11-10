@@ -50,13 +50,13 @@ class DiskCache(TokenCache):
         >>> c.access_token = token
     """
     def __init__(self, config_dir, filename):
-        if not os.path.isdir(config_dir):
+        self.config_dir = os.path.expanduser(config_dir)
+        if not os.path.isdir(self.config_dir):
             raise ConfigurationError("Directory %s not found. Configuration "
-                                     "likely incomplete. Try pyTD.configure()")
-        self.config_dir = config_dir
+                                     "likely incomplete. "
+                                     "Try pyTD.configure()" % self.config_dir)
         self.filename = filename
-        path = os.path.join(self.config_dir, self.filename)
-        self.config_path = os.path.expanduser(path)
+        self.config_path = os.path.join(self.config_dir, self.filename)
         self._create()
 
     def clear(self):

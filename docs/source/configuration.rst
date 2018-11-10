@@ -116,8 +116,8 @@ following command:
 
 .. code:: bash
 
-    $ export TD_CONSUMER_KEY='<YOUR_OAUTH_ID>'
-    $ export TD_CALLBACK_URL='<YOUR_REDIRECT_URI>'
+    $ export TD_CONSUMER_KEY='<YOUR_CONSUMER_KEY>'
+    $ export TD_CALLBACK_URL='<YOUR_CALLBACK_URL>'
 
 replacing the bracketed text with your information.
 
