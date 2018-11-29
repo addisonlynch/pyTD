@@ -23,6 +23,7 @@
 import logging
 import requests
 import datetime as dt
+import time
 
 import pandas as pd
 from pandas import to_datetime
@@ -112,7 +113,7 @@ def _sanitize_dates(start, end, set_defaults=True):
 
 
 def to_timestamp(date):
-    return int(date.strftime("%s"))
+    return int(time.mktime(date.timetuple()))
 
 
 def yn_require(msg):

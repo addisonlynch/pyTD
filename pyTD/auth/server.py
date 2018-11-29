@@ -22,16 +22,19 @@
 
 import codecs
 import datetime
+import json
+import logging
 import os
 import requests
 import ssl
-
 
 from pyTD import BASE_AUTH_URL, DEFAULT_SSL_DIR, PACKAGE_DIR
 from pyTD.compat import HTTPServer, BaseHTTPRequestHandler
 from pyTD.compat import urlparse, urlencode, parse_qs
 from pyTD.utils import to_timestamp
 from pyTD.utils.exceptions import AuthorizationError
+
+logger = logging.getLogger(__name__)
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -82,7 +85,11 @@ class Handler(BaseHTTPRequestHandler):
                 json_data["access_time"] = now
                 self.server._store_tokens(json_data)
             except ValueError:
-                pass
+                msg = json.dumps(json_data)
+                logger.Error("Tokens could not be obtained")
+                logger.Error("RESPONSE: %s" % msg)
+                raise AuthorizationError("Authorization could not be "
+                                         "completed")
             success = codecs.open("pyTD/auth/_static/success.html", "r",
                                   "utf-8")
 
