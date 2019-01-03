@@ -20,6 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from pyTD.auth import auth_check
 from pyTD.resource import Get
 from pyTD.utils.exceptions import ResourceNotFound
 
@@ -52,6 +53,7 @@ class Instruments(Get):
                                  out[self.symbol]["fundamental"]}).T
         return pd.DataFrame(out).T
 
+    @auth_check
     def execute(self):
         data = self.get()
         if not data:

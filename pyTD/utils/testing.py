@@ -29,11 +29,18 @@ def default_auth_ok():
     """
     Used for testing. Returns true if a default API object is authorized
     """
-    try:
-        a = default_api()
-        return a.auth_valid
-    except ConfigurationError:
-        return False
+    global __api__
+    if __api__ is None:
+        try:
+            a = default_api()
+            return a.auth_valid
+        except ConfigurationError:
+            return False
+    else:
+        if __api__.refresh_valid is True:
+            return True
+        else:
+            return False
 
 
 class MockResponse(object):

@@ -27,13 +27,10 @@ import time
 import requests
 import subprocess
 
-from functools import wraps
-
 from pyTD import CONFIG_DIR
 from pyTD import DEFAULT_SSL_DIR
 
 from pyTD.auth import TDAuthManager
-from pyTD.auth.tokens import RefreshToken
 from pyTD.cache import DiskCache, MemCache
 from pyTD.utils import yn_require, bprint, gprint, rprint, _init_session
 from pyTD.utils.exceptions import (Redirection, ValidationError,
@@ -79,31 +76,6 @@ def refresh_auth():
     else:
         __api__.refresh_auth()
         return
-
-
-def auth_check(func):
-    @wraps(func)
-    def _authenticate_wrapper(self, *args, **kwargs):
-        if self.auth_valid is True:
-            return func(self, *args, **kwargs)
-        else:
-            if self.refresh_valid is False:
-                logger.warning("Need new refresh token.")
-                choice = yn_require("Would you like to authorize a new "
-                                    "refresh token?")
-                if choice is True:
-                    self.refresh_auth()
-                else:
-                    raise AuthorizationError("Refresh token "
-                                             "needed for access.")
-            else:
-                self.auth.refresh_access_token()
-        if self.auth_valid is True:
-            return func(self, *args, **kwargs)
-        else:
-            raise AuthorizationError("Authorization could not be "
-                                     "completed.")
-    return _authenticate_wrapper
 
 
 class api(object):
@@ -163,20 +135,11 @@ class api(object):
         self.ssl_key_path = os.path.join(self.ssl_dir, 'key.pem')
         self.cache = kwargs.get("cache")
 
-        # Used for testing only, not documented otherwise
-        env_token = os.getenv("TD_REFRESH_TOKEN")
-
-        # Use passed token cache, else create one based on store_tokens
-        if self.store_tokens is True and not env_token:
-            self.cache = self.cache or DiskCache(CONFIG_DIR, self.consumer_key)
-        elif self.store_tokens is False and not env_token:
-            self.cache = self.cache or MemCache()
-        else:
-            data = env_token.split("/", 2)
-            t = RefreshToken(access_time=int(data[0]), expires_in=int(data[1]),
-                             token=data[2])
-            self.cache = MemCache()
-            self.cache.refresh_token = t
+        if self.cache is None:
+            if self.store_tokens is True:
+                self.cache = DiskCache(CONFIG_DIR, self.consumer_key)
+            else:
+                self.cache = MemCache()
 
         # Set up an authorization manager
         self.auth = TDAuthManager(self.cache, self.consumer_key,
@@ -238,7 +201,6 @@ class api(object):
                        os.getenv("TD_CONFIG_DIR"))
         return "%s%s" % (MSG, DBG)
 
-    @auth_check
     def request(self, method, url, **kwargs):
         headers = kwargs.pop("headers", {})
         headers.update({'authorization': self._auth_header})
@@ -329,9 +291,8 @@ def default_api(ignore_globals=False):
     ignore_globals: boolean, default False
         Testing utility that forces creation of a new global API object
     """
-    if ignore_globals is False:
-        global __api__
-    else:
+    global __api__
+    if ignore_globals is True:
         __api__ = None
 
     params = {}
@@ -368,6 +329,8 @@ def configure(options=None, **kwargs):
         OAuth ID of application
     callback_url: str, optional
         Redirect URI of application
+    cache: str, optional
+        Token cache (use for testing)
     """
     global __api__
 
@@ -383,22 +346,24 @@ def configure(options=None, **kwargs):
     key_path = os.path.join(DEFAULT_SSL_DIR, 'key.pem')
 
     if not os.path.isfile(cert_path) or not os.path.isfile(key_path):
-        choice = yn_require("SSL certificate and key required for "
-                            "authorization. Would you like to create them "
-                            "now?")
-        if choice is True:
-            if os.path.isdir(DEFAULT_SSL_DIR) is False:
-                logger.debug("Creating directory %s to store SSL cert and "
-                             "key" % DEFAULT_SSL_DIR)
-                os.makedirs(DEFAULT_SSL_DIR)
-                logger.debug("SSL directory %s created" % DEFAULT_SSL_DIR)
-            else:
-                logger.debug("SSL directory exists: %s" % DEFAULT_SSL_DIR)
-            gen_ssl(DEFAULT_SSL_DIR)
+        if os.path.isdir(DEFAULT_SSL_DIR) is False:
+            logger.debug("Creating directory %s to store SSL cert and "
+                         "key" % DEFAULT_SSL_DIR)
+            os.makedirs(DEFAULT_SSL_DIR)
+            logger.debug("SSL directory %s created" % DEFAULT_SSL_DIR)
+        else:
+            logger.debug("SSL directory exists: %s" % DEFAULT_SSL_DIR)
+        gen_ssl(DEFAULT_SSL_DIR)
 
-    oid = kwargs.get("consumer_key", None)
-    callback_url = kwargs.get("callback_url", None)
+    consumer_key = kwargs.get("consumer_key")
+    callback_url = kwargs.get("callback_url")
+    cache = kwargs.get("cache")
 
-    if oid and callback_url:
-        os.environ["TD_CONSUMER_KEY"] = oid
+    if consumer_key and callback_url:
+        os.environ["TD_CONSUMER_KEY"] = consumer_key
         os.environ["TD_CALLBACK_URL"] = callback_url
+
+        __api__ = api(consumer_key=consumer_key,
+                      callback_url=callback_url,
+                      cache=cache)
+    return __api__

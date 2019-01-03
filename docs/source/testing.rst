@@ -14,7 +14,7 @@ Setting Up a Testing Environment
 
  .. code:: bash
 
-    $ pip3 install -r requirements-test.txt
+    $ pip3 install -r requirements-dev.txt
 
 2. Run the tests
 

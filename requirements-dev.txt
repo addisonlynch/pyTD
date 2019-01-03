@@ -1,0 +1,12 @@
+flake8
+ipython
+matplotlib
+mock
+pytest
+pytest-runner
+requests-cache
+six
+sphinx
+sphinx-autobuild
+sphinx-rtd-theme
+sphinxcontrib-napoleon

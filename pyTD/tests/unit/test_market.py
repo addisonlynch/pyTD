@@ -24,10 +24,10 @@ import datetime
 import pandas as pd
 import pytest
 
-from pyTD.market import (get_quotes, get_movers, get_market_hours,
-                         get_option_chains, get_price_history,
-                         get_fundamentals)
-from pyTD.utils.exceptions import (TDQueryError, ResourceNotFound)
+from pyTD.tests.test_helper import pyTD
+
+TDQueryError = pyTD.utils.exceptions.TDQueryError
+ResourceNotFound = pyTD.utils.exceptions.ResourceNotFound
 
 
 @pytest.fixture(scope='session', autouse=True)
@@ -40,32 +40,33 @@ class TestMarketExceptions(object):
 
     def test_get_quotes_bad_symbol(self):
         with pytest.raises(TypeError):
-            get_quotes()
+            pyTD.market.get_quotes()
 
     def test_get_movers_bad_index(self):
         with pytest.raises(TypeError):
-            get_movers()
+            pyTD.market.get_movers()
 
         with pytest.raises(TDQueryError):
-            get_movers("DJI")
+            pyTD.market.get_movers("DJI")
 
 
 @pytest.mark.webtest
 class TestQuotes(object):
 
     def test_quotes_json_single(self):
-        aapl = get_quotes("AAPL", output_format='json')
+        aapl = pyTD.market.get_quotes("AAPL", output_format='json')
         assert isinstance(aapl, dict)
         assert "AAPL" in aapl
 
     def test_quotes_json_multiple(self):
-        aapl = get_quotes(["AAPL", "TSLA"], output_format='json')
+        aapl = pyTD.market.get_quotes(["AAPL", "TSLA"],
+                                      output_format='json')
         assert isinstance(aapl, dict)
         assert len(aapl) == 2
         assert "TSLA" in aapl
 
     def test_quotes_pandas(self):
-        df = get_quotes("AAPL")
+        df = pyTD.market.get_quotes("AAPL")
         assert isinstance(df, pd.DataFrame)
         assert "AAPL" in df
 
@@ -73,12 +74,12 @@ class TestQuotes(object):
 
     def test_quotes_bad_symbol(self):
         with pytest.raises(ResourceNotFound):
-            get_quotes("BADSYMBOL")
+            pyTD.market.get_quotes("BADSYMBOL")
 
     def test_quotes_bad_params(self):
         bad = ["AAPL"] * 1000
         with pytest.raises(ValueError):
-            get_quotes(bad)
+            pyTD.market.get_quotes(bad)
 
 
 @pytest.mark.webtest
@@ -87,24 +88,24 @@ class TestMarketMovers(object):
     @pytest.mark.xfail(reason="Movers may return empty outside of "
                               "trading hours.")
     def test_movers_json(self):
-        data = get_movers("$DJI", output_format='json')
+        data = pyTD.market.get_movers("$DJI", output_format='json')
         assert isinstance(data, list)
         assert len(data) == 10
 
     @pytest.mark.xfail(reason="Movers may return empty outside of "
                               "trading hours.")
     def test_movers_pandas(self):
-        data = get_movers("$DJI")
+        data = pyTD.market.get_movers("$DJI")
         assert isinstance(data, pd.DataFrame)
         assert len(data) == 10
 
     def test_movers_bad_index(self):
         with pytest.raises(ResourceNotFound):
-            get_movers("DJI")
+            pyTD.market.get_movers("DJI")
 
     def test_movers_no_params(self):
         with pytest.raises(TypeError):
-            get_movers()
+            pyTD.market.get_movers()
 
 
 @pytest.mark.webtest
@@ -112,32 +113,33 @@ class TestMarketHours(object):
 
     def test_hours_bad_market(self):
         with pytest.raises(ValueError):
-            get_market_hours("BADMARKET")
+            pyTD.market.get_market_hours("BADMARKET")
 
         with pytest.raises(ValueError):
-            get_market_hours(["BADMARKET", "EQUITY"])
+            pyTD.market.get_market_hours(["BADMARKET", "EQUITY"])
 
     def test_hours_default(self):
-        data = get_market_hours()
+        data = pyTD.market.get_market_hours()
 
-        assert len(data) == 4
-        assert data.index[0] == "date"
+        assert len(data) == 8
+        assert data.index[0] == "category"
 
     def test_hours_json(self):
         date = now()
-        data = get_market_hours("EQUITY", date, output_format='json')
+        data = pyTD.market.get_market_hours("EQUITY", date,
+                                            output_format='json')
         assert isinstance(data, dict)
 
     def test_hours_pandas(self):
         date = now()
-        data = get_market_hours("EQUITY", date)
+        data = pyTD.market.get_market_hours("EQUITY", date)
         assert isinstance(data, pd.DataFrame)
-        assert data.index[0] == "date"
+        assert data.index[0] == "category"
 
     def test_hours_batch(self):
-        data = get_market_hours(["EQUITY", "OPTION"])
+        data = pyTD.market.get_market_hours(["EQUITY", "OPTION"])
 
-        assert len(data) == 4
+        assert len(data) == 8
         assert isinstance(data["equity"], pd.Series)
 
 
@@ -146,28 +148,28 @@ class TestOptionChains(object):
 
     def test_option_chain_no_symbol(self):
         with pytest.raises(TypeError):
-            get_option_chains()
+            pyTD.market.get_option_chains()
 
     def test_option_chain_bad_symbol(self):
         with pytest.raises(ResourceNotFound):
-            get_option_chains("BADSYMBOL")
+            pyTD.market.get_option_chains("BADSYMBOL")
 
     def test_option_chain(self):
-        data = get_option_chains("AAPL", output_format='json')
+        data = pyTD.market.get_option_chains("AAPL", output_format='json')
 
         assert isinstance(data, dict)
         assert len(data) == 13
         assert data["status"] == "SUCCESS"
 
     def test_option_chain_call(self):
-        data = get_option_chains("AAPL", contract_type="CALL",
-                                 output_format='json')
+        data = pyTD.market.get_option_chains("AAPL", contract_type="CALL",
+                                             output_format='json')
 
         assert not data["putExpDateMap"]
 
     def test_option_chain_put(self):
-        data = get_option_chains("AAPL", contract_type="PUT",
-                                 output_format='json')
+        data = pyTD.market.get_option_chains("AAPL", contract_type="PUT",
+                                             output_format='json')
 
         assert not data["callExpDateMap"]
 
@@ -177,24 +179,24 @@ class TestPriceHistory(object):
 
     def test_price_history_no_symbol(self):
         with pytest.raises(TypeError):
-            get_price_history()
+            pyTD.market.get_price_history()
 
     def test_price_history_default_dates(self):
-        data = get_price_history("AAPL", output_format='json')
+        data = pyTD.market.get_price_history("AAPL", output_format='json')
 
         assert isinstance(data, list)
 
     def test_price_history_bad_symbol(self):
         with pytest.raises(ResourceNotFound):
-            get_price_history("BADSYMBOL")
+            pyTD.market.get_price_history("BADSYMBOL")
 
     def test_price_history_bad_symbols(self):
         with pytest.raises(ResourceNotFound):
-            get_price_history(["BADSYMBOL", "BADSYMBOL"],
-                              output_format='pandas')
+            pyTD.market.get_price_history(["BADSYMBOL", "BADSYMBOL"],
+                                          output_format='pandas')
 
     def test_price_history_json(self):
-        data = get_price_history("AAPL", output_format='json')
+        data = pyTD.market.get_price_history("AAPL", output_format='json')
 
         assert isinstance(data, list)
         assert data[0]["close"] == 172.26
@@ -203,19 +205,19 @@ class TestPriceHistory(object):
 
     def test_batch_history_json(self):
         syms = ["AAPL", "TSLA", "MSFT"]
-        data = get_price_history(syms, output_format='json')
+        data = pyTD.market.get_price_history(syms, output_format='json')
 
         assert len(data) == 3
         assert set(data) == set(syms)
 
     def test_price_history_pandas(self):
-        data = get_price_history("AAPL")
+        data = pyTD.market.get_price_history("AAPL")
 
         assert isinstance(data, pd.DataFrame)
 
     def test_batch_history_pandas(self):
-        data = get_price_history(["AAPL", "TSLA", "MSFT"],
-                                 output_format='pandas')
+        data = pyTD.market.get_price_history(["AAPL", "TSLA", "MSFT"],
+                                             output_format='pandas')
 
         assert isinstance(data, pd.DataFrame)
         assert isinstance(data.columns, pd.MultiIndex)
@@ -230,8 +232,9 @@ class TestPriceHistory(object):
         start = datetime.date(2018, 1, 24)
         end = datetime.date(2018, 2, 12)
 
-        data = get_price_history("AAPL", start_date=start, end_date=end,
-                                 output_format='pandas')
+        data = pyTD.market.get_price_history("AAPL", start_date=start,
+                                             end_date=end,
+                                             output_format='pandas')
 
         assert data.iloc[0].name.date() == start
         assert data.iloc[-1].name.date() == datetime.date(2018, 2, 9)
@@ -239,10 +242,11 @@ class TestPriceHistory(object):
         assert pd.infer_freq(data.index) == "B"
 
 
+@pytest.mark.webtest
 class TestFundamentals(object):
 
     def test_fundamentals(self):
-        data = get_fundamentals("AAPL")
+        data = pyTD.market.get_fundamentals("AAPL")
 
         assert isinstance(data, pd.DataFrame)
         assert len(data.columns) == 46

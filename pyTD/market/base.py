@@ -22,6 +22,7 @@
 
 import logging
 
+from pyTD.auth import auth_check
 from pyTD.resource import Get
 
 logger = logging.getLogger(__name__)
@@ -67,6 +68,7 @@ class MarketData(Get):
         import pandas as pd
         return pd.DataFrame(out)
 
+    @auth_check
     def execute(self):
         out = self.get()
         return self._output_format(out)

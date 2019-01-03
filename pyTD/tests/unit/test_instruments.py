@@ -23,9 +23,10 @@
 import pandas as pd
 import pytest
 
-from pyTD.instruments import get_instrument, get_instruments
+from pyTD.tests.test_helper import pyTD
 
-from pyTD.utils.exceptions import ResourceNotFound, TDQueryError
+ResourceNotFound = pyTD.utils.exceptions.ResourceNotFound
+TDQueryError = pyTD.utils.exceptions.TDQueryError
 
 
 @pytest.mark.webtest
@@ -33,15 +34,16 @@ class TestInstrument(object):
 
     def test_instrument_no_symbol(self):
         with pytest.raises(TypeError):
-            get_instrument()
+            pyTD.instruments.get_instrument()
 
     def test_instrument_bad_instrument(self):
         with pytest.raises(ResourceNotFound):
-            get_instrument("BADINSTRUMENT")
+            pyTD.instruments.get_instrument("BADINSTRUMENT")
 
     def test_instrument_cusip(self):
         cusip = "68389X105"
-        data = get_instrument(cusip, output_format='json')[cusip]
+        data = pyTD.instruments.get_instrument(cusip,
+                                               output_format='json')[cusip]
 
         assert isinstance(data, dict)
 
@@ -50,7 +52,8 @@ class TestInstrument(object):
 
     def test_instruments_cusip(self):
         cusip = "17275R102"
-        data = get_instruments(cusip, output_format='json')[cusip]
+        data = pyTD.instruments.get_instruments(cusip,
+                                                output_format='json')[cusip]
 
         assert isinstance(data, dict)
 
@@ -58,7 +61,7 @@ class TestInstrument(object):
         assert data["exchange"] == "NASDAQ"
 
     def test_instrument_cusp_pandas(self):
-        data = get_instrument("68389X105")
+        data = pyTD.instruments.get_instrument("68389X105")
 
         assert isinstance(data, pd.DataFrame)
 
@@ -67,7 +70,7 @@ class TestInstrument(object):
         assert data.iloc[0]["symbol"] == "ORCL"
 
     def test_instrument_symbol(self):
-        data = get_instrument("AAPL")
+        data = pyTD.instruments.get_instrument("AAPL")
 
         assert isinstance(data, pd.DataFrame)
 
@@ -76,7 +79,8 @@ class TestInstrument(object):
         assert data.iloc[0]["symbol"] == "AAPL"
 
     def test_instruments_fundamental(self):
-        data = get_instruments("AAPL", projection="fundamental")
+        data = pyTD.instruments.get_instruments("AAPL",
+                                                projection="fundamental")
 
         assert isinstance(data, pd.DataFrame)
 
@@ -84,7 +88,8 @@ class TestInstrument(object):
         assert data.iloc[0]["symbol"] == "AAPL"
 
     def test_instruments_regex(self):
-        data = get_instruments("AAP.*", projection="symbol-regex")
+        data = pyTD.instruments.get_instruments("AAP.*",
+                                                projection="symbol-regex")
 
         assert isinstance(data, pd.DataFrame)
 
@@ -92,4 +97,5 @@ class TestInstrument(object):
 
     def test_instruments_bad_projection(self):
         with pytest.raises(TDQueryError):
-            get_instruments("AAPL", projection="BADPROJECTION")
+            pyTD.instruments.get_instruments("AAPL",
+                                             projection="BADPROJECTION")

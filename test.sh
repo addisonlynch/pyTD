@@ -8,6 +8,14 @@ rc=$?; if [[ $rc != 0 ]]; then
 fi
 echo "PASSED"
 
+echo "flake8-rst docs check..."
+flake8-rst --filename="*.rst" .
+rc=$?; if [[ $rc != 0 ]]; then
+    echo "flake8-rst docs check failed."
+    exit $rc;
+fi
+echo "PASSED"
+
 echo "pytest..."
 cd pyTD
 pytest -x tests

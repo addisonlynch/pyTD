@@ -20,6 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from pyTD.auth import auth_check
 from pyTD.market.base import MarketData
 from pyTD.utils import _handle_lists
 from pyTD.utils.exceptions import ResourceNotFound
@@ -56,6 +57,7 @@ class Quotes(MarketData):
             "symbol": ','.join(self.symbols)
         }
 
+    @auth_check
     def execute(self):
         data = self.get()
         if not data:

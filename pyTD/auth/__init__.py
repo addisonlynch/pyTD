@@ -21,6 +21,32 @@
 # SOFTWARE.
 
 # flake8:noqa
+from functools import wraps
 
 from pyTD.auth.manager import TDAuthManager
 from pyTD.auth.server import TDAuthServer
+
+
+def auth_check(func):
+    @wraps(func)
+    def _authenticate_wrapper(self, *args, **kwargs):
+        if self.api.auth_valid is True:
+            return func(self, *args, **kwargs)
+        else:
+            if self.api.refresh_valid is False:
+                logger.warning("Need new refresh token.")
+                choice = yn_require("Would you like to authorize a new "
+                                    "refresh token?")
+                if choice is True:
+                    self.api.refresh_auth()
+                else:
+                    raise AuthorizationError("Refresh token "
+                                             "needed for access.")
+            else:
+                self.api.auth.refresh_access_token()
+        if self.api.auth_valid is True:
+            return func(self, *args, **kwargs)
+        else:
+            raise AuthorizationError("Authorization could not be "
+                                     "completed.")
+    return _authenticate_wrapper

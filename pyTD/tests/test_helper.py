@@ -20,29 +20,31 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# flake8: noqa
-import pytest
-
-# fixture routing
-from pyTD.tests.fixtures import sample_oid
-from pyTD.tests.fixtures import sample_uri
-from pyTD.tests.fixtures import valid_refresh_token, valid_access_token
-from pyTD.tests.fixtures import set_env, del_env
-from pyTD.tests.fixtures import valid_cache, invalid_cache
-
-# mock responses routing
-from pyTD.tests.fixtures.mock_responses import mock_400
+import logging
+import os
+import pyTD
 
 
-def pytest_addoption(parser):
-    parser.addoption(
-        "--noweb", action="store_true", default=False, help="Ignore web tests"
-    )
+logging.basicConfig(level=logging.INFO)
 
-def pytest_collection_modifyitems(config, items):
-    if config.getoption("--noweb"):
-        skip_web = pytest.mark.skip(reason="--noweb option passed. Skipping "
-                                           "webtest.")
-        for item in items:
-            if "webtest" in item.keywords:
-                item.add_marker(skip_web)
+consumer_key = os.getenv("TD_CONSUMER_KEY")
+refresh_token = os.getenv("TD_REFRESH_TOKEN")
+
+if refresh_token is None:
+    raise EnvironmentError("Must set TD_REFRESH_TOKEN environment variable "
+                           "in order to run tests")
+
+init_data = {
+    "token": refresh_token,
+    "access_time": 10000000,
+    "expires_in": 99999999999999
+}
+
+refresh_token = pyTD.auth.tokens.RefreshToken(options=init_data)
+
+cache = pyTD.cache.MemCache()
+cache.refresh_token = refresh_token
+
+pyTD.configure(consumer_key=consumer_key,
+               callback_url="https://127.0.0.1:65010/td-callback",
+               cache=cache)

@@ -134,11 +134,11 @@ enter your TD Ameritrade Developer app's Consumer Key (Consumer Key) and Callbac
 
 .. code-block:: python
 
-    import from pyTD import configure
+    from pyTD import configure
 
     configure({
-    "callback_url": "https://localhost:8080",
-    "consumer_key": "TEST@AMER.OAUTHAP"
+        "callback_url": "https://localhost:8080",
+        "consumer_key": "TEST@AMER.OAUTHAP"
     })
 
 *Note: this configuration will be cached in the current session only*
@@ -150,8 +150,8 @@ enter your TD Ameritrade Developer app's Consumer Key (Consumer Key) and Callbac
     from pyTD import api
 
     a = api({
-    "callback_url": "https://localhost:8080",
-    "consumer_key": "TEST@AMER.OAUTHAP"
+        "callback_url": "https://localhost:8080",
+        "consumer_key": "TEST@AMER.OAUTHAP"
     })
 
 The Consumer Key and Callback URL passed in these scenarios will be cached in your configuration directory in the file tdm_config. Tokens will be cached in a file whose name is your Consumer Key.

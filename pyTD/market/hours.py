@@ -46,11 +46,11 @@ class MarketHours(MarketData):
         A pyTD api object. If not passed, API requestor defaults to
         pyTD.api.default_api
     """
-    _MARKETS = {"EQUITY": "EQ",
-                "OPTION": "EQO",
-                "FUTURE": None,
-                "BOND": "BON",
-                "FOREX": "forex"}
+    _MARKETS = {"equity": "EQ",
+                "option": "EQO",
+                "future": None,
+                "bond": "BON",
+                "forex": "forex"}
 
     def __init__(self, markets="EQUITY", date=None, output_format='pandas',
                  api=None):
@@ -58,6 +58,7 @@ class MarketHours(MarketData):
         err_msg = "Please enter one more most markets (EQUITY, OPTION, etc.)"\
                   "for retrieval."
         self.markets = _handle_lists(markets, err_msg=err_msg)
+        self.markets = [market.lower() for market in self.markets]
         if not set(self.markets).issubset(set(self._MARKETS)):
             raise ValueError("Please input valid markets for hours retrieval.")
         super(MarketHours, self).__init__(output_format, api)
@@ -74,6 +75,6 @@ class MarketHours(MarketData):
         return 'hours'
 
     def _convert_output(self, out):
-        markets = [market.lower() for market in self.markets]
-        data = {market: out[market][market] for market in markets}
+        data = {market: out[market][self._MARKETS[market]] for market in
+                self.markets}
         return pd.DataFrame(data)

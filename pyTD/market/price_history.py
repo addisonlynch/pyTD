@@ -23,6 +23,7 @@
 import datetime
 import pandas as pd
 
+from pyTD.auth import auth_check
 from pyTD.market.base import MarketData
 from pyTD.utils import _sanitize_dates, to_timestamp, _handle_lists
 from pyTD.utils.exceptions import ResourceNotFound
@@ -113,6 +114,7 @@ class PriceHistory(MarketData):
         df = df.drop("datetime", axis=1)
         return df
 
+    @auth_check
     def execute(self):
         result = {}
         for sym in self.symbols:
