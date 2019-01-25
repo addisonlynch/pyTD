@@ -37,7 +37,7 @@ from pyTD.utils.exceptions import (Redirection, ValidationError,
                                    AuthorizationError, ForbiddenAccess,
                                    ResourceNotFound, ClientError,
                                    ServerError, ConfigurationError,
-                                   SSLError)
+                                   SSLError, TDQueryError)
 
 
 logger = logging.getLogger(__name__)
@@ -260,7 +260,8 @@ class api(object):
             message = "There was a server-side error with your request."
             raise ServerError(response, message=message)
         else:
-            raise ConnectionError(response, message="Unknown response code.")
+            raise TDQueryError(response=response,
+                               message="Unknown response code.")
 
     def handle_response(self, response, status_check=None):
         # Ensures status code is OK

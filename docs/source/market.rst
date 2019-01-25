@@ -1,15 +1,5 @@
 .. _market:
 
-.. ipython:: python
-    :suppress:
-    import requests_cache
-    from pyTD.api import api
-    requests_cache.install_cache("cache/pyTD")
-
-    __api__ = api(consumer_key="TEST@AMER.OAUTHAP",
-                  callback_url="https://localhost:8080",
-                  session=requests_cache.CachedSession(),
-                  store_tokens=False)
 
 Market Data
 ===========
@@ -41,6 +31,8 @@ the two endpoints.
 
 
 .. autofunction:: pyTD.market.get_quotes
+
+.. _market.quotes-examples:
 
 Examples
 ~~~~~~~~
@@ -77,6 +69,8 @@ The `Get Movers <https://developer.tdameritrade.com/movers/apis/get/marketdata/%
 
 .. warning:: This endpoint may return empty outside of Market Hours.
 
+.. _market.movers-examples:
+
 Examples
 ~~~~~~~~
 
@@ -102,6 +96,8 @@ but can do so for any past or future date when passed the optional keyword argum
 
 .. autofunction :: pyTD.market.get_market_hours
 
+.. _market.hours-examples:
+
 Examples
 ~~~~~~~~
 
@@ -124,6 +120,8 @@ The `Get Option Chains <https://developer.tdameritrade.com/option-chains/apis/ge
 
 .. autofunction :: pyTD.market.get_option_chains
 
+.. _market.option-chains-examples:
+
 Examples
 ~~~~~~~~
 
@@ -145,6 +143,8 @@ The `Get Price History <https://developer.tdameritrade.com/price-history/apis/ge
 
 
 .. autofunction :: pyTD.market.get_price_history
+
+.. _market.price-history-examples:
 
 Examples
 ~~~~~~~~
@@ -172,4 +172,4 @@ Fundamental data can also be accesed through ``get_fundamentals``, which wraps
 
     from pyTD.market import get_fundamentals
 
-    get_fundamentals("AAPL")
+    get_fundamentals("AAPL").head()

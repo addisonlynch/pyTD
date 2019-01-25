@@ -45,7 +45,7 @@ If you have a **web** application and want to be able to access pyTD
 Enter the appropriate Callback URL and configure that endpoint to complete the code flow.
 
 
-.. _auth.installed
+.. _auth.installed:
 
 Installed Application
 ---------------------

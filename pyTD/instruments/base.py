@@ -50,8 +50,8 @@ class Instruments(Get):
         import pandas as pd
         if self.projection == "fundamental":
             return pd.DataFrame({self.symbol:
-                                 out[self.symbol]["fundamental"]}).T
-        return pd.DataFrame(out).T
+                                 out[self.symbol]["fundamental"]})
+        return pd.DataFrame(out)
 
     @auth_check
     def execute(self):

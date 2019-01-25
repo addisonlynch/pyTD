@@ -49,6 +49,7 @@ extensions = [
     "sphinx.ext.autosectionlabel",
     'IPython.sphinxext.ipython_console_highlighting',
     'IPython.sphinxext.ipython_directive',
+    'numpydoc'
 ]
 
 # Add any paths that contain templates here, relative to this directory.

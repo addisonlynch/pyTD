@@ -39,6 +39,12 @@ Highlights:
 - **Accounts**: Balances, Positions, Watchlists, Statistics, Preferences
 - **Trading**: Get/Place/Cancel/Replace Orders and Saved Orders
 
+.. _readme.documentation:
+
+Documentation
+-------------
+
+Full documentation is located at `addisonlynch.github.io/pyTD <https://addisonlynch.github.io/pyTD>`__.
 
 .. _readme.installation:
 

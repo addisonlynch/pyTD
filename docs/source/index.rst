@@ -41,7 +41,6 @@ This documentation is organized as follows:
 
    exceptions.rst
    testing.rst
-   about.rst
    faq.rst
 
 

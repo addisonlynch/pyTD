@@ -67,7 +67,7 @@ replacing the bracketed text with your absolute path.
 .. _config.ssl:
 
 SSL Certificate and Key
-~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
 
 .. seealso:: :ref:`What is a self-signed SSL Certificate?`
 

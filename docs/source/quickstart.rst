@@ -16,7 +16,7 @@ Prerequisites
 -------------
 
 :Python Knowledge: You need to know at least a little Python to use pyTD; it's
-                   a Python wrapper after all. PRAW supports `Python 2.7`_,
+                   a Python wrapper after all. pyTD supports `Python 2.7`_,
                    and `Python 3.4 to 3.7`_.
 
 :TD Ameritrade Knowledge: A basic understanding of how TD Ameritrade's
@@ -35,7 +35,7 @@ Prerequisites
 
 
 Step 1 - Obtain an Consumer Key and Callback URL
---------------------------------------------
+------------------------------------------------
 
 .. seealso:: For a more detailed tutorial on setting up a TD Ameritrade
     Developer Account, creating an application, or obtaining an Consumer Key and

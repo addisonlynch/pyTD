@@ -1,16 +1,5 @@
 .. _instruments:
 
-.. ipython:: python
-    :suppress:
-    import requests_cache
-    from pyTD.api import api
-    requests_cache.install_cache("cache/pyTD")
-
-    __api__ = api(consumer_key="TEST@AMER.OAUTHAP",
-                  callback_url="https://localhost:8080",
-                  session=requests_cache.CachedSession(),
-                  store_tokens=False)
-
 Instruments
 ===========
 
@@ -21,7 +10,7 @@ data. These endpoints are `Search Instruments
 `Get Instrument
 <https://developer.tdameritrade.com/instruments/apis/get/instruments/%7Bcusip%7D>`__.
 
-.. _instruments.get-instrument
+.. _instruments.get-instrument:
 
 Get Instrument
 --------------

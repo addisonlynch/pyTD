@@ -41,7 +41,7 @@ server**.
 
 
 
-.. _faq.redirect-uri:
+.. _faq.callback-url:
 
 What should my Callback URL be?
 -------------------------------
@@ -79,12 +79,53 @@ An SSL certificate certifies the identity of an entity such as your local pyTD a
 
 This may cause problems for some browsers, which will display messages such as "Your connection is not private" and "This site's security certificate is not trusted!". This is due to the fact that your application is not a trusted certificate authority.
 
+.. _faq.create-ssl-cert-key:
+
+How do I create a self-signed SSL certificate and key?
+------------------------------------------------------
+
+There are a number of different options for generating a self-signed SSL
+certificate and key.
+
+The easiest way: OpenSSL
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+`OpenSSL <https://www.openssl.org/>`__ is an SSL/TLS toolkit which is useful
+for generating SSL certificates. Once installed (see system-specific
+installation instructions below), run the following command to generate key
+and certificate files ``key.pem`` and ``cert.pem``:
+
+.. code-block:: bash
+
+  openssl req -newkey rsa:2048 -nodes -keyout key.pem -x509 -days 365 -out cert.pem
+
+
+Installing OpenSSL
+^^^^^^^^^^^^^^^^^^
+
+**macOS**
+
+Install using `Homebrew <https://brew.sh/>`__:
+
+.. code-block:: bash
+
+  brew update
+  brew install openssl
+
+**Linux**
+
+OpenSSL is packaged with most Linux distributions
+
+
+**Windows**
+
+OpenSSL for Windows can be downloaded `here <http://gnuwin32.sourceforge.net/packages/openssl.htm>`__.
 
 
 .. _faq.dev_account:
 
 How do I get my Consumer Key and Callback URL?
-------------------------------------------
+----------------------------------------------
 
 A TD Ameritrade Developer account and application are required in order to access the Developer API. **This is a separate account from TD Ameritrade Brokerage Accounts**. A TD Ameritrade Brokerage Account is **not required** to obtain a TD Ameritrade Developer Account.
 
@@ -150,6 +191,8 @@ financial security.
 
 Simply put, CUSIPs are unique identifiers for a number of financial instruments
 including common stocks, bonds, and other equities.
+
+.. _faq.cusip-examples:
 
 Examples
 ~~~~~~~~

@@ -61,7 +61,7 @@ class TestInstrument(object):
         assert data["exchange"] == "NASDAQ"
 
     def test_instrument_cusp_pandas(self):
-        data = pyTD.instruments.get_instrument("68389X105")
+        data = pyTD.instruments.get_instrument("68389X105").T
 
         assert isinstance(data, pd.DataFrame)
 
@@ -70,7 +70,7 @@ class TestInstrument(object):
         assert data.iloc[0]["symbol"] == "ORCL"
 
     def test_instrument_symbol(self):
-        data = pyTD.instruments.get_instrument("AAPL")
+        data = pyTD.instruments.get_instrument("AAPL").T
 
         assert isinstance(data, pd.DataFrame)
 
@@ -80,7 +80,7 @@ class TestInstrument(object):
 
     def test_instruments_fundamental(self):
         data = pyTD.instruments.get_instruments("AAPL",
-                                                projection="fundamental")
+                                                projection="fundamental").T
 
         assert isinstance(data, pd.DataFrame)
 
@@ -89,7 +89,7 @@ class TestInstrument(object):
 
     def test_instruments_regex(self):
         data = pyTD.instruments.get_instruments("AAP.*",
-                                                projection="symbol-regex")
+                                                projection="symbol-regex").T
 
         assert isinstance(data, pd.DataFrame)
 
