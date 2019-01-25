@@ -21,10 +21,18 @@
 # SOFTWARE.
 
 # flake8:noqa
+
+import logging
+
 from functools import wraps
 
 from pyTD.auth.manager import TDAuthManager
 from pyTD.auth.server import TDAuthServer
+from pyTD.utils import yn_require
+from pyTD.utils.exceptions import AuthorizationError
+
+
+logger = logging.getLogger(__name__)
 
 
 def auth_check(func):

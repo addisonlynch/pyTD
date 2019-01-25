@@ -45,7 +45,7 @@ class Handler(BaseHTTPRequestHandler):
     def auth_link(self):
         params = {
             "response_type": "code",
-            "redirect_url": self.server.callback_url,
+            "redirect_uri": self.server.callback_url,
             "client_id": self.server.consumer_key,
         }
         return '%s?%s' % (BASE_AUTH_URL, urlencode(params))
@@ -76,7 +76,7 @@ class Handler(BaseHTTPRequestHandler):
             data = {'refresh_token': '', 'grant_type': 'authorization_code',
                     'access_type': 'offline', 'code': self.server.auth_code,
                     'client_id': self.server.consumer_key,
-                    'callback_url': self.server.callback_url}
+                    'redirect_uri': self.server.callback_url}
             now = to_timestamp(datetime.datetime.now())
             authReply = requests.post('https://api.tdameritrade.com/v1/oauth2/'
                                       'token', headers=headers, data=data)
