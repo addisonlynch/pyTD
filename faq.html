@@ -1,0 +1,404 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Frequently Asked Questions &mdash; pyTD  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Testing" href="testing.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pyTD
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installing pyTD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">Authentication</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Endpoints</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="market.html">Market Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instruments.html">Instruments</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/basics.html">Basics</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Info</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Frequently Asked Questions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-oauth-2-0">What is OAuth 2.0?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-should-my-callback-url-be">What should my Callback URL be?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-a-self-signed-ssl-certificate">What is a self-signed SSL certificate?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-do-i-create-a-self-signed-ssl-certificate-and-key">How do I create a self-signed SSL certificate and key?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-easiest-way-openssl">The easiest way: OpenSSL</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#installing-openssl">Installing OpenSSL</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#how-do-i-get-my-consumer-key-and-callback-url">How do I get my Consumer Key and Callback URL?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#creating-an-app">Creating an App</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-a-script-application">What is a Script Application?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-a-cusip-id">What is a CUSIP ID?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#is-it-safe-to-save-my-authentications-on-disk">Is it safe to save my authentications on-disk?</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyTD</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Frequently Asked Questions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/faq.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="frequently-asked-questions">
+<span id="faq"></span><h1>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-is-oauth-2-0">
+<span id="faq-oauth-20"></span><h2>What is OAuth 2.0?<a class="headerlink" href="#what-is-oauth-2-0" title="Permalink to this headline">¶</a></h2>
+<p>From <a class="reference external" href="https://tools.ietf.org/html/rfc6749">RFC 6749</a>:</p>
+<blockquote>
+<div>The OAuth 2.0 authorization framework enables a third-party
+application to obtain limited access to an HTTP service, either on
+behalf of a resource owner by orchestrating an approval interaction
+between the resource owner and the HTTP service, or by allowing the
+third-party application to obtain access on its own behalf.</div></blockquote>
+<p>In other words, OAuth 2.0 is the protocol that TD Ameritrade uses to help you
+gain access to the Developer API (and your account). There are four roles in
+this process:</p>
+<p>1. <strong>Resource Owner</strong> - an entity capable of granting access to a protected
+resource. <strong>In this case, YOU</strong>.</p>
+<p>2. <strong>Resource Server</strong> - the server hosting the protected resources, capable of
+accepting and responding to protected resource requests using access tokens.
+<strong>In this case, TD Ameritrade’s servers</strong>.</p>
+<p>3. <strong>Client</strong> - An application making protected resource requests on behalf of
+the resource owner and with its authorization. <strong>In this case, pyTD (or an
+application which uses it)</strong>.</p>
+<p>4. <strong>Authorization Server</strong> - The server issung access tokens to the client
+after successfully authenticating the resource owner and obtaining
+authorization. <strong>In this case, your application or local authorization
+server</strong>.</p>
+</div>
+<div class="section" id="what-should-my-callback-url-be">
+<span id="faq-callback-url"></span><h2>What should my Callback URL be?<a class="headerlink" href="#what-should-my-callback-url-be" title="Permalink to this headline">¶</a></h2>
+<p>This raises an important question: <strong>What is a Callback URL?</strong></p>
+<p>From <a class="reference external" href="https://tools.ietf.org/html/rfc6749">RFC 6749</a>:</p>
+<blockquote>
+<div><p>The authorization code is obtained by using an <strong>authorization server</strong>
+as an intermediary between the client and resource owner.  Instead of
+requesting authorization directly from the resource owner, <strong>the client
+directs the resource owner to an authorization server</strong> (via its
+user-agent as defined in [RFC2616]), which in turn directs the
+resource owner back to the client with the authorization code….</p>
+<p>… <strong>Because the resource owner only authenticates with the authorization
+server, the resource owner’s credentials are never shared with the client</strong>.</p>
+</div></blockquote>
+<p>As explained in <a class="reference internal" href="#what-is-oauth-2-0"><span class="std std-ref">What is OAuth 2.0?</span></a>, the resource owner is you - as you
+have the access to your TD Ameritrade brokerage account. In order to prevent
+your account credentials from being revealed, authentication is completed with
+an <strong>authorization server</strong>.</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">pyTD</span></code> behavior is to start this server locally, running on your
+localhost (typically <code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code>). If this is the case, your Callback URL
+should be <a class="reference external" href="https://localhost:8080">https://localhost:8080</a>.</p>
+</div>
+<div class="section" id="what-is-a-self-signed-ssl-certificate">
+<span id="faq-ssl-basics"></span><h2>What is a self-signed SSL certificate?<a class="headerlink" href="#what-is-a-self-signed-ssl-certificate" title="Permalink to this headline">¶</a></h2>
+<p>An SSL certificate certifies the identity of an entity such as your local pyTD authentication server. <strong>Self-signed SSL certificates</strong> are signed by the same entity which they are certifying the identity of.</p>
+<p>This may cause problems for some browsers, which will display messages such as “Your connection is not private” and “This site’s security certificate is not trusted!”. This is due to the fact that your application is not a trusted certificate authority.</p>
+</div>
+<div class="section" id="how-do-i-create-a-self-signed-ssl-certificate-and-key">
+<span id="faq-create-ssl-cert-key"></span><h2>How do I create a self-signed SSL certificate and key?<a class="headerlink" href="#how-do-i-create-a-self-signed-ssl-certificate-and-key" title="Permalink to this headline">¶</a></h2>
+<p>There are a number of different options for generating a self-signed SSL
+certificate and key.</p>
+<div class="section" id="the-easiest-way-openssl">
+<h3>The easiest way: OpenSSL<a class="headerlink" href="#the-easiest-way-openssl" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://www.openssl.org/">OpenSSL</a> is an SSL/TLS toolkit which is useful
+for generating SSL certificates. Once installed (see system-specific
+installation instructions below), run the following command to generate key
+and certificate files <code class="docutils literal notranslate"><span class="pre">key.pem</span></code> and <code class="docutils literal notranslate"><span class="pre">cert.pem</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openssl req -newkey rsa:2048 -nodes -keyout key.pem -x509 -days <span class="m">365</span> -out cert.pem
+</pre></div>
+</div>
+<div class="section" id="installing-openssl">
+<h4>Installing OpenSSL<a class="headerlink" href="#installing-openssl" title="Permalink to this headline">¶</a></h4>
+<p><strong>macOS</strong></p>
+<p>Install using <a class="reference external" href="https://brew.sh/">Homebrew</a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>brew update
+brew install openssl
+</pre></div>
+</div>
+<p><strong>Linux</strong></p>
+<p>OpenSSL is packaged with most Linux distributions</p>
+<p><strong>Windows</strong></p>
+<p>OpenSSL for Windows can be downloaded <a class="reference external" href="http://gnuwin32.sourceforge.net/packages/openssl.htm">here</a>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="how-do-i-get-my-consumer-key-and-callback-url">
+<span id="faq-dev-account"></span><h2>How do I get my Consumer Key and Callback URL?<a class="headerlink" href="#how-do-i-get-my-consumer-key-and-callback-url" title="Permalink to this headline">¶</a></h2>
+<p>A TD Ameritrade Developer account and application are required in order to access the Developer API. <strong>This is a separate account from TD Ameritrade Brokerage Accounts</strong>. A TD Ameritrade Brokerage Account is <strong>not required</strong> to obtain a TD Ameritrade Developer Account.</p>
+<p>To register for a TD Ameritrade Developer account, visit <a class="reference external" href="https://developer.tdameritrade.com/">https://developer.tdameritrade.com/</a> and click “Register” in the top-right corner of the screen.</p>
+<div class="section" id="creating-an-app">
+<h3>Creating an App<a class="headerlink" href="#creating-an-app" title="Permalink to this headline">¶</a></h3>
+<p>To create a new TD Ameritrade Developer Application, navigate to the “My Apps” page of your TD Ameritrade Developer Account:</p>
+<div class="figure" id="id1">
+<img alt="_images/noapps.png" src="_images/noapps.png" />
+<p class="caption"><span class="caption-text">My Apps Page</span></p>
+</div>
+<p>From here, click the “Add a new App” button:</p>
+<div class="figure" id="id2">
+<img alt="_images/createapp.png" src="_images/createapp.png" />
+<p class="caption"><span class="caption-text">Creating an app</span></p>
+</div>
+<p>You will be prompted to enter the following fields:</p>
+<ol class="arabic simple">
+<li><strong>App Name</strong> - desired application name</li>
+<li><strong>Callback URL</strong> - also known as Callback URL, this is the callback address to complete authorization</li>
+<li><strong>OAuth User ID</strong> - a unique ID that will be used to create your full OAauth ID</li>
+<li><strong>App Description</strong> - a description of your application</li>
+</ol>
+<p>After completing the form, your application will be created. By clicking on the application in the “My Apps” page, you can display information about it:</p>
+<div class="figure" id="id3">
+<img alt="_images/appinfo.png" src="_images/appinfo.png" />
+<p class="caption"><span class="caption-text">App Info</span></p>
+</div>
+<p>The <strong>Consumer Key</strong> field is your <strong>Consumer Key</strong>. Your <strong>Callback URL</strong> is the <strong>Callback URL</strong> which you entered at the app’s creation.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To change the Callback URL (Callback URL) of your application, you must delete the application and create a new one. This is a caveat of the TD Ameritrade registration process.</p>
+</div>
+</div>
+</div>
+<div class="section" id="what-is-a-script-application">
+<span id="faq-script"></span><h2>What is a Script Application?<a class="headerlink" href="#what-is-a-script-application" title="Permalink to this headline">¶</a></h2>
+<p>A script application is simply an application that is run as a script from your
+local environment. This may be a stand-alone script that is run which uses pyTD
+or command-line invocation of pyTD, such as running:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyTD.market</span> <span class="kn">import</span> <span class="n">get_quotes</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_quotes</span><span class="p">(</span><span class="s2">&quot;AAPL&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>in an interactive Python shell.</p>
+</div>
+<div class="section" id="what-is-a-cusip-id">
+<span id="faq-cusip"></span><h2>What is a CUSIP ID?<a class="headerlink" href="#what-is-a-cusip-id" title="Permalink to this headline">¶</a></h2>
+<p>A CUSIP is a nine-character alphanumeric code that identifies a North American
+financial security.</p>
+<p>Simply put, CUSIPs are unique identifiers for a number of financial instruments
+including common stocks, bonds, and other equities.</p>
+<div class="section" id="examples">
+<span id="faq-cusip-examples"></span><h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Apple Inc.: 03783100</li>
+<li>Cisco Systems: 17275R102</li>
+<li>Google Inc.: 38259P508</li>
+<li>Microsoft Corporation: 594918104</li>
+<li>Oracle Corporation: 58389X105</li>
+</ul>
+</div>
+</div>
+<div class="section" id="is-it-safe-to-save-my-authentications-on-disk">
+<span id="faq-token-storage"></span><h2>Is it safe to save my authentications on-disk?<a class="headerlink" href="#is-it-safe-to-save-my-authentications-on-disk" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">TODO</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="testing.html" class="btn btn-neutral" title="Testing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Addison Lynch.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

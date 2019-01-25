@@ -1,0 +1,329 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pyTD: Python SDK for TD Ameritrade &mdash; pyTD  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Quick Start Guide" href="quickstart.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> pyTD
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installing pyTD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">Authentication</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Endpoints</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="market.html">Market Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instruments.html">Instruments</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/basics.html">Basics</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">pyTD</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>pyTD: Python SDK for TD Ameritrade</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pytd-python-sdk-for-td-ameritrade">
+<h1>pyTD: Python SDK for TD Ameritrade<a class="headerlink" href="#pytd-python-sdk-for-td-ameritrade" title="Permalink to this headline">¶</a></h1>
+<p>This documentation is organized as follows:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#getting-started"><span class="std std-ref">Getting Started</span></a></li>
+<li><a class="reference internal" href="#endpoints"><span class="std std-ref">Endpoints</span></a></li>
+<li><a class="reference internal" href="#tutorials"><span class="std std-ref">Tutorials</span></a></li>
+<li><a class="reference internal" href="#package-info"><span class="std std-ref">Package Info</span></a></li>
+</ul>
+<div class="toctree-wrapper compound" id="getting-started">
+<p class="caption"><span class="caption-text">Getting Started</span><a class="headerlink" href="#getting-started" title="Permalink to this toctree">¶</a></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#step-1-obtain-an-consumer-key-and-callback-url">Step 1 - Obtain an Consumer Key and Callback URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#step-2-run-pytd-configure">Step 2 - Run <code class="docutils literal notranslate"><span class="pre">pyTD.configure</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#step-3-authenticate-your-application">Step 3 - Authenticate Your Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#step-4-go">Step 4 - Go!</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installing pyTD</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#virtualenv">virtualenv</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuring-environment">Configuring Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuring-user-agent">Configuring User Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuring-logging">Configuring Logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#appendix">Appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">Authentication</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="auth.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth.html#script-application">Script Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth.html#web-application">Web Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth.html#installed-application">Installed Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth.html#token-caching">Token Caching</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound" id="endpoints">
+<p class="caption"><span class="caption-text">Endpoints</span><a class="headerlink" href="#endpoints" title="Permalink to this toctree">¶</a></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="market.html">Market Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="market.html#quotes">Quotes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="market.html#movers">Movers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="market.html#hours">Hours</a></li>
+<li class="toctree-l2"><a class="reference internal" href="market.html#option-chains">Option Chains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="market.html#historical-prices">Historical Prices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="market.html#fundamental-data">Fundamental Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="instruments.html">Instruments</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="instruments.html#get-instrument">Get Instrument</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instruments.html#search-instruments">Search Instruments</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound" id="tutorials">
+<p class="caption"><span class="caption-text">Tutorials</span><a class="headerlink" href="#tutorials" title="Permalink to this toctree">¶</a></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/basics.html">Basics</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound" id="package-info">
+<p class="caption"><span class="caption-text">Package Info</span><a class="headerlink" href="#package-info" title="Permalink to this toctree">¶</a></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#setting-up-a-testing-environment">Setting Up a Testing Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#writing-tests">Writing Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#testing-dependencies">Testing Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#what-is-oauth-2-0">What is OAuth 2.0?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#what-should-my-callback-url-be">What should my Callback URL be?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#what-is-a-self-signed-ssl-certificate">What is a self-signed SSL certificate?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-do-i-create-a-self-signed-ssl-certificate-and-key">How do I create a self-signed SSL certificate and key?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-do-i-get-my-consumer-key-and-callback-url">How do I get my Consumer Key and Callback URL?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#what-is-a-script-application">What is a Script Application?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#what-is-a-cusip-id">What is a CUSIP ID?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#is-it-safe-to-save-my-authentications-on-disk">Is it safe to save my authentications on-disk?</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="quickstart.html" class="btn btn-neutral float-right" title="Quick Start Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Addison Lynch.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

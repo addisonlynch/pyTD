@@ -1,0 +1,383 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Quick Start Guide &mdash; pyTD  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installing pyTD" href="install.html" />
+    <link rel="prev" title="pyTD: Python SDK for TD Ameritrade" href="index.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pyTD
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quick Start Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-1-obtain-an-consumer-key-and-callback-url">Step 1 - Obtain an Consumer Key and Callback URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-2-run-pytd-configure">Step 2 - Run <code class="docutils literal notranslate"><span class="pre">pyTD.configure</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-3-authenticate-your-application">Step 3 - Authenticate Your Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-4-go">Step 4 - Go!</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installing pyTD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">Authentication</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Endpoints</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="market.html">Market Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instruments.html">Instruments</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/basics.html">Basics</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyTD</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Quick Start Guide</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/quickstart.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="quick-start-guide">
+<span id="quickstart"></span><h1>Quick Start Guide<a class="headerlink" href="#quick-start-guide" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This Quick Start guide assumes the use of a <a class="reference internal" href="faq.html#what-is-a-script-application"><span class="std std-ref">Script
+Application</span></a>. See <a class="reference internal" href="auth.html#authentication"><span class="std std-ref">Authentication</span></a> for
+more information about using
+<strong>installed</strong> applications and <strong>web</strong> applications.</p>
+</div>
+<p>In this section, we go over everything you need to know to start building
+scripts, or bots using pyTD, the Python TD Ameritrade Developer API SDK.
+It’s fun and easy. Let’s get started.</p>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Python Knowledge:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">You need to know at least a little Python to use pyTD; it’s
+a Python wrapper after all. pyTD supports <a class="reference external" href="https://docs.python.org/2/tutorial/index.html">Python 2.7</a>,
+and <a class="reference external" href="https://docs.python.org/3/tutorial/index.html">Python 3.4 to 3.7</a>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">TD Ameritrade Knowledge:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">A basic understanding of how TD Ameritrade’s
+Developer APIs work is a must. It is recommended that you read
+through the <a class="reference external" href="https://developer.tdameritrade.com/apis">TD Ameritrade documentation</a> before starting
+with pyTD.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">TD Ameritrade Developer Account:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">This is a <strong>separate account</strong> from your TD
+brokerage accounts(s).</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="step-1-obtain-an-consumer-key-and-callback-url">
+<span id="quickstart-common-tasks"></span><h2>Step 1 - Obtain an Consumer Key and Callback URL<a class="headerlink" href="#step-1-obtain-an-consumer-key-and-callback-url" title="Permalink to this headline">¶</a></h2>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">For a more detailed tutorial on setting up a TD Ameritrade
+Developer Account, creating an application, or obtaining an Consumer Key and
+Callback URL, see <a class="reference internal" href="faq.html#how-do-i-get-my-consumer-key-and-callback-url"><span class="std std-ref">How do I get my Consumer Key and Callback URL?</span></a>.</p>
+</div>
+<p>1. From your TD Ameritrade Developer Account, <strong>create a new application</strong>
+using the “Add App” button in your profile. Enter the following information
+when prompted:</p>
+<ul class="simple">
+<li><strong>App Name</strong> - desired application name (can be anything)</li>
+<li><strong>Callback URL</strong> - the address that your authentication information will be forwarded to complete authentication of your script application (<a class="reference external" href="https://localhost:8080">https://localhost:8080</a>
+is easiest). See <a class="reference internal" href="faq.html#what-should-my-callback-url-be"><span class="std std-ref">What should my Callback URL be?</span></a> for more information
+on choosing a Callback URL.</li>
+<li><strong>OAuth User ID</strong> - unique ID that will be used to create your consumer key
+(can be anything)</li>
+<li><strong>App Description</strong> - description of your application (can be anything)</li>
+</ul>
+<p>2. Once your application has been created, store its <strong>Consumer Key</strong> and <strong>Callback URL</strong>
+in the environment variables <code class="docutils literal notranslate"><span class="pre">TD_CONSUMER_KEY</span></code> and <code class="docutils literal notranslate"><span class="pre">TD_CALLBACK_URL</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">TD_CONSUMER_KEY</span><span class="o">=</span>TEST@AMER.OAUTHAP <span class="c1"># Your Consumer Key</span>
+$ <span class="nb">export</span> <span class="nv">TD_CALLBACK_URL</span><span class="o">=</span>https://localhost:8080 <span class="c1"># Your Callback URL</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you are unfamiliar with environment variables or unable to
+set them on your system, see <a class="reference internal" href="configuration.html#configuring-environment"><span class="std std-ref">Configuring Environment</span></a> for more
+configuration options.</p>
+</div>
+</div>
+<div class="section" id="step-2-run-pytd-configure">
+<h2>Step 2 - Run <code class="docutils literal notranslate"><span class="pre">pyTD.configure</span></code><a class="headerlink" href="#step-2-run-pytd-configure" title="Permalink to this headline">¶</a></h2>
+<p>The easiest (and recommended) way configure <code class="docutils literal notranslate"><span class="pre">pyTD</span></code> is using
+<code class="docutils literal notranslate"><span class="pre">pyTD.configure</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyTD</span>
+<span class="n">pyTD</span><span class="o">.</span><span class="n">configure</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This function does the following:</p>
+<p>1. Creates a <strong>configuration directory</strong> (defaults to <code class="docutils literal notranslate"><span class="pre">.tdm</span></code> in your home
+directory). The location can be chosen manually by setting the environment
+variable <code class="docutils literal notranslate"><span class="pre">TD_CONFIG_DIR</span></code>. This directory is the location in which pyTD’s
+<a class="reference internal" href="configuration.html#config-logging"><span class="std std-ref">log</span></a>, <a class="reference internal" href="auth.html#auth-cache"><span class="std std-ref">cached tokens</span></a> (if using on-disk
+caching), and <a class="reference internal" href="configuration.html#config-ssl"><span class="std std-ref">SSL certificate and key</span></a> are stored.</p>
+<p>2. Generates a <strong>self-signed SSL certificate &amp; key</strong> and places them in the
+<code class="docutils literal notranslate"><span class="pre">ssl</span></code> directory within your configuration directory.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If using MacOS, you may not be able to generate the certificate
+and key using <code class="docutils literal notranslate"><span class="pre">pyTD.configure</span></code>. See <a class="reference internal" href="configuration.html#config-ssl-manual"><span class="std std-ref">Generating an SSL Certificate and Key</span></a> for
+more information and instructions on how to generate the
+certificate manually.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>When called with no arguments, <code class="docutils literal notranslate"><span class="pre">pyTD.configure</span></code> requires <a class="reference internal" href="configuration.html#setting-environment-variables"><span class="std std-ref">Setting Environment Variables</span></a> <code class="docutils literal notranslate"><span class="pre">TD_CONSUMER_KEY</span></code> and <code class="docutils literal notranslate"><span class="pre">TD_CALLBACK_URL</span></code> to your app’s Consumer Key and
+Callback URL. These can also be passed to <code class="docutils literal notranslate"><span class="pre">pyTD.configure</span></code> instead:</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyTD</span>
+
+<span class="n">consumer_key</span><span class="o">=</span><span class="s1">&#39;TEST@AMER.OAUTHAP&#39;</span>
+<span class="n">callback_url</span><span class="o">=</span><span class="s1">&#39;https://localhost:8080&#39;</span>
+
+<span class="n">pyTD</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">consumer_key</span><span class="o">=</span><span class="n">consumer_key</span><span class="p">,</span> <span class="n">callback_url</span><span class="o">=</span><span class="n">callback_url</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="last"><code class="docutils literal notranslate"><span class="pre">pyTD.configure</span></code> will set the environment variables automatically for the
+<strong>current session only</strong>.</p>
+</div>
+</div>
+<div class="section" id="step-3-authenticate-your-application">
+<span id="quickstart-authenticate-app"></span><h2>Step 3 - Authenticate Your Application<a class="headerlink" href="#step-3-authenticate-your-application" title="Permalink to this headline">¶</a></h2>
+<p>The simplest way to authorize and authenticate pyTD is by calling any function which
+returns data. For example <code class="docutils literal notranslate"><span class="pre">get_quotes</span></code> from <code class="docutils literal notranslate"><span class="pre">pyTD.market</span></code>
+will automatically prompt you to obtain a new refresh token if you have not
+obtained one or your refresh token has expired:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyTD.market</span> <span class="kn">import</span> <span class="n">get_quotes</span>
+
+<span class="n">get_quotes</span><span class="p">(</span><span class="s2">&quot;AAPL&quot;</span><span class="p">)</span>
+<span class="c1"># WARNING:root:Need new refresh token.</span>
+<span class="c1"># Would you like to authorize a new refresh token? [y/n]:</span>
+</pre></div>
+</div>
+<p>Selecting <code class="docutils literal notranslate"><span class="pre">y</span></code> will open a browser for you to authorize your application:</p>
+<div class="figure">
+<img alt="_images/authprompt.png" src="_images/authprompt.png" />
+</div>
+<p>Select “AUTHORIZE” to redirect to a TD Ameritrade login prompt:</p>
+<div class="figure">
+<img alt="_images/tdlogin.png" src="_images/tdlogin.png" />
+</div>
+<p>From here, log in to your TD Ameritrade Brokerage Account. Once logged in, the following page will be displayed:</p>
+<div class="figure">
+<img alt="_images/tdallow.png" src="_images/tdallow.png" />
+</div>
+<p>Select “Allow” to authorize your application. pyTD will handle receiving the tokens and authorization code behind the scenes, and if retrieval is successful, the results of your original query will display on screen.</p>
+</div>
+<div class="section" id="step-4-go">
+<h2>Step 4 - Go!<a class="headerlink" href="#step-4-go" title="Permalink to this headline">¶</a></h2>
+<p>You’re now all set up to query TD Ameritrade’s Developer APIs!</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">For more usage tutorials and examples, see <a class="reference internal" href="tutorials/basics.html#tutorial-basics"><span class="std std-ref">Tutorials</span></a></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="install.html" class="btn btn-neutral float-right" title="Installing pyTD" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="pyTD: Python SDK for TD Ameritrade" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Addison Lynch.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

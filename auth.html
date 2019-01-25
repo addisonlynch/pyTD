@@ -1,0 +1,411 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Authentication &mdash; pyTD  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Configuration" href="configuration.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pyTD
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installing pyTD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Authentication</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#script-application">Script Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#web-application">Web Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installed-application">Installed Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#token-caching">Token Caching</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#caches">Caches</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#in-memory-memcache">In-Memory - <code class="docutils literal notranslate"><span class="pre">MemCache</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#on-disk-diskcache">On-Disk - <code class="docutils literal notranslate"><span class="pre">DiskCache</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Endpoints</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="market.html">Market Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instruments.html">Instruments</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/basics.html">Basics</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyTD</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Authentication</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/auth.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="authentication">
+<span id="auth"></span><h1>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h1>
+<p>TD Ameritrade uses <a class="reference external" href="https://oauth.net/2/">OAuth 2.0</a> to authorize and
+authenticate requests.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">Not familiar with OAuth 2.0? See <a class="reference internal" href="faq.html#what-is-oauth-2-0"><span class="std std-ref">What is OAuth 2.0?</span></a> for an overview of OAuth Authentication and Authorization.</p>
+</div>
+<div class="section" id="overview">
+<span id="auth-overview"></span><h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Send Consumer Key and Callback URL from your app’s details to TD Ameritrade</li>
+<li>Open web browser to TD Ameritrade, <strong>login to TD Ameritrade Brokerage Account</strong></li>
+<li>Send authorization code to receive refresh and access tokens</li>
+<li>Refresh and access tokens are stored in your <code class="docutils literal notranslate"><span class="pre">api</span></code> instance’s <code class="docutils literal notranslate"><span class="pre">cache</span></code> (either <code class="docutils literal notranslate"><span class="pre">DiskCache</span></code> or <code class="docutils literal notranslate"><span class="pre">MemCache</span></code>)</li>
+</ol>
+</div>
+<div class="section" id="script-application">
+<span id="auth-script"></span><h2>Script Application<a class="headerlink" href="#script-application" title="Permalink to this headline">¶</a></h2>
+<p><strong>Script</strong> applications are the simplest type of application to work with
+because they don’t involve any sort of callback process to obtain an
+<code class="docutils literal notranslate"><span class="pre">access_token</span></code>.</p>
+<p>TD Ameritrade requires that you provide a Callback URL when registering your application – <code class="docutils literal notranslate"><span class="pre">http://localhost:8080</span></code> is a simple one to use.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="faq.html#what-should-my-callback-url-be"><span class="std std-ref">What should my Callback URL be?</span></a></p>
+</div>
+<p>pyTD provides a simple web server, written in pure Python, to handle
+authentication with TD Ameritrade. If used for authentication, this server will run on your localhost (127.0.0.1) and receive your authorization code at your specified Callback URL.</p>
+</div>
+<div class="section" id="web-application">
+<span id="auth-web"></span><h2>Web Application<a class="headerlink" href="#web-application" title="Permalink to this headline">¶</a></h2>
+<p>If you have a <strong>web</strong> application and want to be able to access pyTD
+Enter the appropriate Callback URL and configure that endpoint to complete the code flow.</p>
+</div>
+<div class="section" id="installed-application">
+<span id="auth-installed"></span><h2>Installed Application<a class="headerlink" href="#installed-application" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="token-caching">
+<span id="auth-cache"></span><h2>Token Caching<a class="headerlink" href="#token-caching" title="Permalink to this headline">¶</a></h2>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">To enable persistent access to authentication tokens across sessions, pyTD stores tokens on-disk by default. <strong>Storing tokens on-disk may pose a security risk to some users.</strong> See <a class="reference internal" href="faq.html#is-it-safe-to-save-my-authentications-on-disk"><span class="std std-ref">Is it safe to save my authentications on-disk?</span></a> for more information.</p>
+</div>
+<p>By default, tokens are stored <em>on-disk</em> in the <a class="reference internal" href="configuration.html#configuration-directory"><span class="std std-ref">Configuration Directory</span></a>, though they can also be stored <em>in-memory</em>. There are two ways to select a token storage method:</p>
+<ol class="arabic simple">
+<li><strong>Environment Variable</strong> (recommended) - set the <code class="docutils literal notranslate"><span class="pre">TD_STORE_TOKENS</span></code> variable:</li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">TD_STORE_TOKENS</span><span class="o">=</span>False
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li>Pass <code class="docutils literal notranslate"><span class="pre">store_tokens</span></code> keyword argument when creating an <code class="docutils literal notranslate"><span class="pre">api</span></code> instance to set token storage temporarily:</li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyTD.api</span> <span class="kn">import</span> <span class="n">api</span>
+
+<span class="n">oid</span> <span class="o">=</span> <span class="s2">&quot;TEST@AMER.OAUTHAP&quot;</span>
+<span class="n">uri</span> <span class="o">=</span> <span class="s2">&quot;https://localhost:8080&quot;</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">api</span><span class="p">(</span><span class="n">consumer_key</span><span class="o">=</span><span class="n">oid</span><span class="p">,</span> <span class="n">callback_url</span><span class="o">=</span><span class="n">uri</span><span class="p">,</span> <span class="n">store_tokens</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>When <code class="docutils literal notranslate"><span class="pre">store_tokens</span></code> is set to <code class="docutils literal notranslate"><span class="pre">False</span></code>, any stored tokens will be freed from memory when the program exits.</p>
+<div class="section" id="caches">
+<h3>Caches<a class="headerlink" href="#caches" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="in-memory-memcache">
+<h4>In-Memory - <code class="docutils literal notranslate"><span class="pre">MemCache</span></code><a class="headerlink" href="#in-memory-memcache" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">MemCache</span></code> class provides in-memory caching for authorization tokens.</p>
+<p><strong>Important</strong> - the stored tokens will be freed from memory when your program exits.</p>
+<dl class="class">
+<dt id="pyTD.cache.MemCache">
+<em class="property">class </em><code class="descclassname">pyTD.cache.</code><code class="descname">MemCache</code><a class="headerlink" href="#pyTD.cache.MemCache" title="Permalink to this definition">¶</a></dt>
+<dd><p>In-memory token cache for access and refresh tokens</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>access_token</strong></dt>
+<dd></dd>
+<dt><strong>refresh_token</strong></dt>
+<dd></dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="47%" />
+<col width="53%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>clear</strong></td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="on-disk-diskcache">
+<h4>On-Disk - <code class="docutils literal notranslate"><span class="pre">DiskCache</span></code><a class="headerlink" href="#on-disk-diskcache" title="Permalink to this headline">¶</a></h4>
+<p>To store auth tokens on-disk, the <code class="docutils literal notranslate"><span class="pre">DiskCache</span></code> class is provided. When passed an absolute path, <code class="docutils literal notranslate"><span class="pre">DiskCache</span></code> creates the necessary directories and instantiates an empty cache file.</p>
+<dl class="class">
+<dt id="pyTD.cache.DiskCache">
+<em class="property">class </em><code class="descclassname">pyTD.cache.</code><code class="descname">DiskCache</code><span class="sig-paren">(</span><em>config_dir</em>, <em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#pyTD.cache.DiskCache" title="Permalink to this definition">¶</a></dt>
+<dd><p>On-disk token cache for access and refresh tokens</p>
+<dl class="attribute">
+<dt id="pyTD.cache.DiskCache.config_dir">
+<code class="descname">config_dir</code><a class="headerlink" href="#pyTD.cache.DiskCache.config_dir" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – Desired directory to store cache</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyTD.cache.DiskCache.filename">
+<code class="descname">filename</code><a class="headerlink" href="#pyTD.cache.DiskCache.filename" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – Desired cache file name</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyTD.cache.DiskCache.Usage">
+<code class="descname">Usage</code><a class="headerlink" href="#pyTD.cache.DiskCache.Usage" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">-----</code></dt>
+<dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">DiskCache</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">refresh_token</span> <span class="o">=</span> <span class="n">token</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">access_token</span> <span class="o">=</span> <span class="n">token</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>access_token</strong></dt>
+<dd></dd>
+<dt><strong>refresh_token</strong></dt>
+<dd></dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear</span></code>()</td>
+<td>Empties the cache, though does not delete the cache file</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="configuration.html" class="btn btn-neutral" title="Configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Addison Lynch.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

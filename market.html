@@ -1,0 +1,575 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Market Data &mdash; pyTD  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Instruments" href="instruments.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pyTD
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installing pyTD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">Authentication</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Endpoints</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Market Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#quotes">Quotes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#movers">Movers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#market-movers-examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#hours">Hours</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#market-hours-examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#option-chains">Option Chains</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#market-option-chains-examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#simple">Simple</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#historical-prices">Historical Prices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#market-price-history-examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#fundamental-data">Fundamental Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="instruments.html">Instruments</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/basics.html">Basics</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyTD</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Market Data</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/market.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="market-data">
+<span id="market"></span><h1>Market Data<a class="headerlink" href="#market-data" title="Permalink to this headline">¶</a></h1>
+<p>TD Ameritrade provides various endpoints to obtain Market Data for various instruments and markets across asset classes.</p>
+<p><strong>Endpoints</strong></p>
+<ol class="arabic simple">
+<li><a class="reference internal" href="#market-quotes"><span class="std std-ref">Quotes</span></a></li>
+<li><a class="reference internal" href="#market-movers"><span class="std std-ref">Market Movers</span></a></li>
+<li><a class="reference internal" href="#market-hours"><span class="std std-ref">Market Hours</span></a></li>
+<li><a class="reference internal" href="#market-option-chains"><span class="std std-ref">Option Chains</span></a></li>
+<li><a class="reference internal" href="#market-price-history"><span class="std std-ref">Price History</span></a></li>
+<li><a class="reference internal" href="#market-fundamentals"><span class="std std-ref">Fundamentals</span></a></li>
+</ol>
+<div class="section" id="quotes">
+<span id="market-quotes"></span><h2>Quotes<a class="headerlink" href="#quotes" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://developer.tdameritrade.com/quotes/apis/get/marketdata/%7Bsymbol%7D/quotes">Get Quote</a>
+and <a class="reference external" href="https://developer.tdameritrade.com/quotes/apis/get/marketdata/quotes">Get Quotes</a>
+endpoints provide real-time and delayed quotes. Access is provided by pyTD
+through the top-level function <code class="docutils literal notranslate"><span class="pre">get_quotes</span></code>, which combines functionality of
+the two endpoints.</p>
+<dl class="function">
+<dt id="pyTD.market.get_quotes">
+<code class="descclassname">pyTD.market.</code><code class="descname">get_quotes</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyTD.market.get_quotes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function for retrieving quotes from the Get Quotes endpoint.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>symbols</strong> (<em>str</em><em>, </em><em>array-like object</em><em> (</em><em>list</em><em>, </em><em>tuple</em><em>, </em><em>Series</em><em>)</em><em>, or </em><em>DataFrame</em>) – Single stock symbol (ticker), array-like object of symbols or
+DataFrame with index containing up to 100 stock symbols.</li>
+<li><strong>output_format</strong> (<em>str</em><em>, </em><em>default 'pandas'</em><em>, </em><em>optional</em>) – Desired output format (json or DataFrame)</li>
+<li><strong>kwargs</strong> (<em>additional request parameters</em><em> (</em><em>see _TDBase class</em><em>)</em>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div class="section" id="examples">
+<span id="market-quotes-examples"></span><h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<p><strong>Single Stock</strong></p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">from</span> <span class="nn">pyTD.market</span> <span class="kn">import</span> <span class="n">get_quotes</span>
+
+<span class="gp">In [2]: </span><span class="n">get_quotes</span><span class="p">(</span><span class="s2">&quot;AAPL&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="gh">Out[2]: </span><span class="go"></span>
+<span class="go">            AAPL</span>
+<span class="go">52WkHigh  233.47</span>
+<span class="go">52WkLow      142</span>
+<span class="go">askId          P</span>
+<span class="go">askPrice   152.6</span>
+<span class="go">askSize     2500</span>
+</pre></div>
+</div>
+<p><strong>Multiple Stocks</strong></p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [3]: </span><span class="n">get_quotes</span><span class="p">([</span><span class="s2">&quot;AAPL&quot;</span><span class="p">,</span> <span class="s2">&quot;TSLA&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="gh">Out[3]: </span><span class="go"></span>
+<span class="go">            AAPL    TSLA</span>
+<span class="go">52WkHigh  233.47  387.46</span>
+<span class="go">52WkLow      142  244.59</span>
+<span class="go">askId          P       K</span>
+<span class="go">askPrice   152.6     290</span>
+<span class="go">askSize     2500     200</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="movers">
+<span id="market-movers"></span><h2>Movers<a class="headerlink" href="#movers" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://developer.tdameritrade.com/movers/apis/get/marketdata/%7Bindex%7D/movers">Get Movers</a> endpoint provides market movers (up or down) for a specified index. Access is provided by pyTD through the top-level function <code class="docutils literal notranslate"><span class="pre">get_movers</span></code>.</p>
+<p><strong>Format</strong> - ‘json’ (dictionary) or ‘pandas’ (Pandas DataFrame)</p>
+<dl class="function">
+<dt id="pyTD.market.get_movers">
+<code class="descclassname">pyTD.market.</code><code class="descname">get_movers</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyTD.market.get_movers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function for retrieving market moveers from the Movers endpoint</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>index</strong> (<em>str</em>) – The index symbol to get movers from</li>
+<li><strong>direction</strong> (<em>str</em><em>, </em><em>default up</em><em>, </em><em>optional</em>) – Return up or down movers</li>
+<li><strong>change</strong> (<em>str</em><em>, </em><em>default percent</em><em>, </em><em>optional</em>) – Return movers by percent change or value change</li>
+<li><strong>output_format</strong> (<em>str</em><em>, </em><em>default 'pandas'</em><em>, </em><em>optional</em>) – Desired output format (json or DataFrame)</li>
+<li><strong>kwargs</strong> (<em>additional request parameters</em><em> (</em><em>see _TDBase class</em><em>)</em>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The desired index should be prefixed with <code class="docutils literal notranslate"><span class="pre">$</span></code>. For instance, the Dow Jones Industrial Average is <code class="docutils literal notranslate"><span class="pre">$DJI</span></code>.</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This endpoint may return empty outside of Market Hours.</p>
+</div>
+<div class="section" id="market-movers-examples">
+<span id="id1"></span><h3>Examples<a class="headerlink" href="#market-movers-examples" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [4]: </span><span class="kn">from</span> <span class="nn">pyTD.market</span> <span class="kn">import</span> <span class="n">get_movers</span>
+
+<span class="gp">In [5]: </span><span class="n">get_movers</span><span class="p">(</span><span class="s2">&quot;$DJI&quot;</span><span class="p">)</span>
+<span class="gh">Out[5]: </span><span class="go"></span>
+<span class="go">          change     ...     totalVolume</span>
+<span class="go">symbol               ...                </span>
+<span class="go">CVX     0.018942     ...         8470714</span>
+<span class="go">V       0.008540     ...         4925199</span>
+<span class="go">MCD     0.008437     ...         3214190</span>
+<span class="go">TRV     0.006294     ...         1621000</span>
+<span class="go">CAT     0.005158     ...         3943630</span>
+<span class="go">CSCO    0.002200     ...        17360572</span>
+<span class="go">HD      0.002035     ...         3860309</span>
+<span class="go">NKE     0.001863     ...         4753325</span>
+<span class="go">MMM     0.001196     ...         1582949</span>
+<span class="go">GS      0.001067     ...         2632011</span>
+
+<span class="go">[10 rows x 5 columns]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="hours">
+<span id="market-hours"></span><h2>Hours<a class="headerlink" href="#hours" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://developer.tdameritrade.com/market-hours/apis/get/marketdata/hours">Get Market Hours</a>
+endpoint provides market hours for various markets, including equities,
+options, and foreign exchange (forex). Access is provided by pyTD through the top-level function <code class="docutils literal notranslate"><span class="pre">get_market_hours</span></code>.</p>
+<p>By default, <code class="docutils literal notranslate"><span class="pre">get_market_hours</span></code> returns the market hours of the current date,
+but can do so for any past or future date when passed the optional keyword argument <code class="docutils literal notranslate"><span class="pre">date</span></code>.</p>
+<dl class="function">
+<dt id="pyTD.market.get_market_hours">
+<code class="descclassname">pyTD.market.</code><code class="descname">get_market_hours</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyTD.market.get_market_hours" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to retrieve market hours for a given market from the Market
+Hours endpoint</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>market</strong> (<em>str</em><em>, </em><em>default EQUITY</em><em>, </em><em>optional</em>) – The market to retrieve operating hours for</li>
+<li><strong>date</strong> (<em>string</em><em> or </em><em>DateTime object</em><em>, </em><em>(</em><em>defaults to today's date</em><em>)</em>) – Operating date, timestamp. Parses many different kind of date
+representations (e.g., ‘JAN-01-2015’, ‘1/1/15’, ‘Jan, 1, 1980’)</li>
+<li><strong>output_format</strong> (<em>str</em><em>, </em><em>default 'pandas'</em><em>, </em><em>optional</em>) – Desired output format (json or DataFrame)</li>
+<li><strong>kwargs</strong> (<em>additional request parameters</em><em> (</em><em>see _TDBase class</em><em>)</em>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div class="section" id="market-hours-examples">
+<span id="id2"></span><h3>Examples<a class="headerlink" href="#market-hours-examples" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [6]: </span><span class="kn">from</span> <span class="nn">pyTD.market</span> <span class="kn">import</span> <span class="n">get_market_hours</span>
+
+<span class="gp">In [7]: </span><span class="n">get_market_hours</span><span class="p">(</span><span class="s2">&quot;EQUITY&quot;</span><span class="p">)</span>
+<span class="gh">Out[7]: </span><span class="go"></span>
+<span class="go">                                                         equity</span>
+<span class="go">category                                                   NULL</span>
+<span class="go">date                                                 2019-01-24</span>
+<span class="go">exchange                                                   NULL</span>
+<span class="go">isOpen                                                     True</span>
+<span class="go">marketType                                               EQUITY</span>
+<span class="go">product                                                      EQ</span>
+<span class="go">productName                                              equity</span>
+<span class="go">sessionHours  {&#39;preMarket&#39;: [{&#39;start&#39;: &#39;2019-01-24T07:00:00-...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="option-chains">
+<span id="market-option-chains"></span><h2>Option Chains<a class="headerlink" href="#option-chains" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://developer.tdameritrade.com/option-chains/apis/get/marketdata/chains">Get Option Chains</a> endpoint provides option chains for optionable equities symbols. Access is provided by pyTD through the top-level function <code class="docutils literal notranslate"><span class="pre">get_option_chains</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">get_option_chains</span></code> accepts a variety of arguments, which allow filtering of the results by criteria such as strike price, moneyness, and expiration date, among others. Futher, it is possible to specify certain parameters to be used in calculations for analytical strategy chains.</p>
+<dl class="function">
+<dt id="pyTD.market.get_option_chains">
+<code class="descclassname">pyTD.market.</code><code class="descname">get_option_chains</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyTD.market.get_option_chains" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to retrieve option chains for a given symbol from the Option
+Chains endpoint</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>contractType</strong> (<em>str</em><em>, </em><em>default ALL</em><em>, </em><em>optional</em>) – Desired contract type (CALL, PUT, ALL)</li>
+<li><strong>strikeCount</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of strikes to return above and below the at-the-money price</li>
+<li><strong>includeQuotes</strong> (<em>bool</em><em>, </em><em>default False</em><em>, </em><em>optional</em>) – Include quotes for options in the option chain</li>
+<li><strong>strategy</strong> (<em>str</em><em>, </em><em>default None</em><em>, </em><em>optional</em>) – Passing a value returns a strategy chain (SINGLE or ANALYTICAL)</li>
+<li><strong>interval</strong> (<em>int</em><em>, </em><em>optional</em>) – Strike interval for spread strategy chains</li>
+<li><strong>strike</strong> (<em>float</em><em>, </em><em>optional</em>) – Filter options that only have a certain strike price</li>
+<li><strong>range</strong> (<em>str</em><em>, </em><em>optional</em>) – Returns options for a given range (ITM, OTM, etc.)</li>
+<li><strong>fromDate</strong> (<em>str</em><em> or </em><em>datetime.datetime object</em><em>, </em><em>optional</em>) – Only return options after this date</li>
+<li><strong>toDate</strong> (<em>str</em><em> or </em><em>datetime.datetime object</em><em>, </em><em>optional</em>) – Only return options before this date</li>
+<li><strong>volatility</strong> (<em>float</em><em>, </em><em>optional</em>) – Volatility to use in calculations (for analytical strategy chains)</li>
+<li><strong>underlyingPrice</strong> (<em>float</em><em>, </em><em>optional</em>) – Underlying price to use in calculations (for analytical strategy
+chains)</li>
+<li><strong>interestRate</strong> (<em>float</em><em>, </em><em>optional</em>) – Interest rate to use in calculations (for analytical strategy
+chains)</li>
+<li><strong>daysToExpiration</strong> (<em>int</em><em>, </em><em>optional</em>) – Days to expiration to use in calulations (for analytical
+strategy chains)</li>
+<li><strong>expMonth</strong> (<em>str</em><em>, </em><em>optional</em>) – Expiration month (format JAN, FEB, etc.) to use in calculations
+(for analytical strategy chains), default ALL</li>
+<li><strong>optionType</strong> (<em>str</em><em>, </em><em>optional</em>) – Type of contracts to return (S: standard, NS: nonstandard,
+ALL: all contracts)</li>
+<li><strong>output_format</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default 'pandas'</em>) – Desired output format</li>
+<li><strong>api</strong> (<em>pyTD.api.api object</em><em>, </em><em>optional</em>) – A pyTD api object. If not passed, API requestor defaults to
+pyTD.api.default_api</li>
+<li><strong>kwargs</strong> (<em>additional request parameters</em><em> (</em><em>see _TDBase class</em><em>)</em>) – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div class="section" id="market-option-chains-examples">
+<span id="id3"></span><h3>Examples<a class="headerlink" href="#market-option-chains-examples" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="simple">
+<h4>Simple<a class="headerlink" href="#simple" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [8]: </span><span class="kn">from</span> <span class="nn">pyTD.market</span> <span class="kn">import</span> <span class="n">get_option_chains</span>
+
+<span class="gp">In [9]: </span><span class="n">get_option_chains</span><span class="p">(</span><span class="s2">&quot;AAPL&quot;</span><span class="p">)</span>
+<span class="gh">Out[9]: </span><span class="go"></span>
+<span class="go">               calls                  ...                puts                  </span>
+<span class="go">                 ask askSize   bid    ...     tradeTimeInLong   vega volatility</span>
+<span class="go">2019-01-25:1    0.02      26     0    ...       1548348107270      0       -999</span>
+<span class="go">2019-02-01:8    0.03      10     0    ...       1548171196325      0          0</span>
+<span class="go">2019-02-08:15   0.06      20     0    ...       1546549089108  0.052     84.281</span>
+<span class="go">2019-02-15:22   0.02       1     0    ...       1541102017668   0.09    228.023</span>
+<span class="go">2019-02-22:29   0.07     138     0    ...       1548257873767  0.071     62.597</span>
+<span class="go">2019-03-01:36   0.06      55     0    ...                   0  0.081     66.067</span>
+<span class="go">2019-03-08:43   0.18      11     0    ...                   0  0.086     51.935</span>
+<span class="go">2019-03-15:50   0.03      26     0    ...       1548356841862  0.129    135.031</span>
+<span class="go">2019-04-18:84   0.01       1     0    ...       1544625016275  0.207    189.663</span>
+<span class="go">2019-06-21:148  0.03      40  0.02    ...       1544625016466  0.242    101.109</span>
+<span class="go">2019-07-19:176  0.11      73     0    ...                   0  0.233     70.135</span>
+<span class="go">2020-01-17:358  0.13      50  0.12    ...       1547828507327  0.366     68.034</span>
+<span class="go">2020-06-19:512  0.52     508  0.32    ...       1547220323708   0.43       58.6</span>
+<span class="go">2021-01-15:722  0.61      18  0.51    ...       1548261076782  0.534      60.54</span>
+<span class="go">2021-06-18:876   2.4       1  2.05    ...                   0  0.493     39.123</span>
+
+<span class="go">[15 rows x 92 columns]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="historical-prices">
+<span id="market-price-history"></span><h2>Historical Prices<a class="headerlink" href="#historical-prices" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://developer.tdameritrade.com/price-history/apis/get/marketdata/%7Bsymbol%7D/pricehistory">Get Price History</a> endpoint provides historical pricing data for symbols across asset classes. Access is provided by pyTD through the top-level function <code class="docutils literal notranslate"><span class="pre">get_price_history</span></code>.</p>
+<dl class="function">
+<dt id="pyTD.market.get_price_history">
+<code class="descclassname">pyTD.market.</code><code class="descname">get_price_history</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyTD.market.get_price_history" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to retrieve price history for a given symbol over a given period</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>symbols</strong> (<em>string</em><em>, </em><em>array-like object</em><em> (</em><em>list</em><em>, </em><em>tuple</em><em>, </em><em>Series</em><em>)</em><em>, or </em><em>DataFrame</em>) – Desired symbols for retrieval</li>
+<li><strong>periodType</strong> (<em>str</em><em>, </em><em>default DAY</em><em>, </em><em>optional</em>) – The type of period to show</li>
+<li><strong>period</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of periods to show</li>
+<li><strong>frequencyType</strong> (<em>str</em><em>, </em><em>optional</em>) – The type of frequency with which a new candle is formed</li>
+<li><strong>frequency</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of frequencyType to includ with each candle</li>
+<li><strong>startDate</strong> (<em>string</em><em> or </em><em>DateTime object</em><em>, </em><em>optional</em>) – Starting date, timestamp. Parses many different kind of date
+representations (e.g., ‘JAN-01-2015’, ‘1/1/15’, ‘Jan, 1, 1980’)</li>
+<li><strong>endDate</strong> (<em>string</em><em> or </em><em>DateTime object</em><em>, </em><em>optional</em>) – Ending date, timestamp. Parses many different kind of date
+representations (e.g., ‘JAN-01-2015’, ‘1/1/15’, ‘Jan, 1, 1980’)</li>
+<li><strong>extended</strong> (<em>str</em><em> or </em><em>bool</em><em>, </em><em>default 'True'/True</em><em>, </em><em>optional</em>) – True to return extended hours data, False for regular hours only</li>
+<li><strong>output_format</strong> (<em>str</em><em>, </em><em>default 'pandas'</em><em>, </em><em>optional</em>) – Desired output format (json or DataFrame)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div class="section" id="market-price-history-examples">
+<span id="id4"></span><h3>Examples<a class="headerlink" href="#market-price-history-examples" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [10]: </span><span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="gp">In [11]: </span><span class="kn">from</span> <span class="nn">pyTD.market</span> <span class="kn">import</span> <span class="n">get_price_history</span>
+
+<span class="gp">In [12]: </span><span class="n">start</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="gp">In [13]: </span><span class="n">end</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="gp">In [14]: </span><span class="n">get_price_history</span><span class="p">(</span><span class="s2">&quot;AAPL&quot;</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="n">end</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="gh">Out[14]: </span><span class="go"></span>
+<span class="go">                      close      high     low    open    volume</span>
+<span class="go">datetime                                                       </span>
+<span class="go">2017-01-03 06:00:00  116.15  116.3300  114.76  115.80  28781865</span>
+<span class="go">2017-01-04 06:00:00  116.02  116.5100  115.75  115.85  21118116</span>
+<span class="go">2017-01-05 06:00:00  116.61  116.8642  115.81  115.92  22193587</span>
+<span class="go">2017-01-06 06:00:00  117.91  118.1600  116.47  116.78  31751900</span>
+<span class="go">2017-01-09 06:00:00  118.99  119.4300  117.94  117.95  33561948</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="fundamental-data">
+<span id="market-fundamentals"></span><h2>Fundamental Data<a class="headerlink" href="#fundamental-data" title="Permalink to this headline">¶</a></h2>
+<p>Fundamental data can also be accesed through <code class="docutils literal notranslate"><span class="pre">get_fundamentals</span></code>, which wraps
+<code class="docutils literal notranslate"><span class="pre">pyTD.instruments.get_instruments</span></code> for convenience.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [15]: </span><span class="kn">from</span> <span class="nn">pyTD.market</span> <span class="kn">import</span> <span class="n">get_fundamentals</span>
+
+<span class="gp">In [16]: </span><span class="n">get_fundamentals</span><span class="p">(</span><span class="s2">&quot;AAPL&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="gh">Out[16]: </span><span class="go"></span>
+<span class="go">                       AAPL</span>
+<span class="go">beta                1.09174</span>
+<span class="go">bookValuePerShare   2.79895</span>
+<span class="go">currentRatio        1.12384</span>
+<span class="go">divGrowthRate3Year        0</span>
+<span class="go">dividendAmount         2.92</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="instruments.html" class="btn btn-neutral float-right" title="Instruments" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Addison Lynch.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

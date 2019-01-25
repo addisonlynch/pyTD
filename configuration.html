@@ -1,0 +1,611 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Configuration &mdash; pyTD  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Authentication" href="auth.html" />
+    <link rel="prev" title="Installing pyTD" href="install.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pyTD
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installing pyTD</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#configuring-environment">Configuring Environment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#configuration-directory">Configuration Directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ssl-certificate-and-key">SSL Certificate and Key</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#automatic">Automatic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#manual">Manual</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-environment-variables">Setting Environment Variables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#macos-linux">MacOS/Linux</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#the-all-in-one-solution-pytd-configure">The All-in-One Solution: <code class="docutils literal notranslate"><span class="pre">pyTD.configure</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#configuring-user-agent">Configuring User Agent</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-api-object">The <code class="docutils literal notranslate"><span class="pre">api</span></code> object</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#configuring-logging">Configuring Logging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#setting-the-logging-level">Setting the logging level</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#appendix">Appendix</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#environment-variables">Environment Variables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">Authentication</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Endpoints</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="market.html">Market Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instruments.html">Instruments</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/basics.html">Basics</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyTD</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Configuration</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/configuration.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="configuration">
+<span id="config"></span><h1>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="#config-environment"><span class="std std-ref">Configuring Environment</span></a></li>
+<li><a class="reference internal" href="#config-user-agent"><span class="std std-ref">Configuring User Agent</span></a></li>
+<li><a class="reference internal" href="#config-logging"><span class="std std-ref">Configuring Logging</span></a></li>
+<li><a class="reference internal" href="#config-appendix"><span class="std std-ref">Appendix</span></a></li>
+</ul>
+<p>The following are the available configuration options for pyTD.</p>
+<p><strong>Environment</strong></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Configuration Directory:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Location in which pyTD’s <a class="reference internal" href="#config-logging"><span class="std std-ref">log</span></a>, <a class="reference internal" href="auth.html#auth-cache"><span class="std std-ref">cached
+tokens</span></a> (if using on-disk caching), and <a class="reference internal" href="#config-ssl"><span class="std std-ref">SSL certificate and
+key</span></a> are stored</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">SSL Certificate and Key:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">If using local web server authentication (script applications), a
+self-signed SSL certificate and key are needed.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>User Agent</strong> - <code class="docutils literal notranslate"><span class="pre">api</span></code></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Consumer Key &amp; Callback URL:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">TD Ameritrade authorization credentials</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Token Caching:</th><td class="field-body">Storage of authentication tokens. Can be cached <em>on-disk</em> or <em>in-memory</em>.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Request Parameters:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Specify how requests should be be made. These include <code class="docutils literal notranslate"><span class="pre">retry_count</span></code>, <code class="docutils literal notranslate"><span class="pre">pause</span></code>, and <code class="docutils literal notranslate"><span class="pre">session</span></code>.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Logging</strong></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Log Level:</th><td class="field-body">Logging level of pyTD. The <code class="docutils literal notranslate"><span class="pre">logging</span></code> module handles pyTD’s logging.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="configuring-environment">
+<span id="config-environment"></span><h2>Configuring Environment<a class="headerlink" href="#configuring-environment" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="configuration-directory">
+<span id="config-config-dir"></span><h3>Configuration Directory<a class="headerlink" href="#configuration-directory" title="Permalink to this headline">¶</a></h3>
+<p>By default, pyTD creates the directory <code class="docutils literal notranslate"><span class="pre">.tdm</span></code> in your home directory, which
+serves as the default location for on-disk token caching, pyTD’s log, and your SSL
+certificate and key.</p>
+<p>To specify a custom configuration directory, store such directory’s <em>absolute</em>
+path in the environment variable <code class="docutils literal notranslate"><span class="pre">TD_CONFIG_DIR</span></code>:</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span>$ export TD_CONFIG_DIR=&lt;/path/to/directory&gt;
+</pre></div>
+</div>
+<p>replacing the bracketed text with your absolute path.</p>
+</div>
+<div class="section" id="ssl-certificate-and-key">
+<span id="config-ssl"></span><h3>SSL Certificate and Key<a class="headerlink" href="#ssl-certificate-and-key" title="Permalink to this headline">¶</a></h3>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="faq.html#what-is-a-self-signed-ssl-certificate"><span class="std std-ref">What is a self-signed SSL certificate?</span></a></p>
+</div>
+<div class="section" id="automatic">
+<span id="config-ssl-auto"></span><h4>Automatic<a class="headerlink" href="#automatic" title="Permalink to this headline">¶</a></h4>
+<p>To generate the self-signed SSL key and certificate needed for local web server
+authentication, use the top-level <code class="docutils literal notranslate"><span class="pre">configure</span></code> function:</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyTD</span> <span class="k">import</span> <span class="n">configure</span>
+
+<span class="n">configure</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This function will prompt creation of a self-signed SSL key and certificate,
+which will both be placed in your <a class="reference internal" href="#configuration-directory"><span class="std std-ref">Configuration Directory</span></a>.</p>
+</div>
+<div class="section" id="manual">
+<span id="config-ssl-manual"></span><h4>Manual<a class="headerlink" href="#manual" title="Permalink to this headline">¶</a></h4>
+<p>The SSL key and certificate can be created manually with the
+following OpenSSL command:</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span>$ openssl req -newkey rsa:2048 -nodes -keyout key.pem -x509 -days 365 -out cert.pem
+</pre></div>
+</div>
+<p>Place the generated key and certificate in the <code class="docutils literal notranslate"><span class="pre">ssl</span></code> sub-directory of your
+<a class="reference internal" href="#config-config-dir"><span class="std std-ref">Configuration Directory</span></a>.</p>
+</div>
+</div>
+<div class="section" id="setting-environment-variables">
+<span id="config-environment-variables"></span><h3>Setting Environment Variables<a class="headerlink" href="#setting-environment-variables" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="macos-linux">
+<h4>MacOS/Linux<a class="headerlink" href="#macos-linux" title="Permalink to this headline">¶</a></h4>
+<p>To set the environment variables for your Consumer Key and Callback URL, use the
+following command:</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span>$ export TD_CONSUMER_KEY=&#39;&lt;YOUR_CONSUMER_KEY&gt;&#39;
+$ export TD_CALLBACK_URL=&#39;&lt;YOUR_CALLBACK_URL&gt;&#39;
+</pre></div>
+</div>
+<p>replacing the bracketed text with your information.</p>
+</div>
+</div>
+<div class="section" id="the-all-in-one-solution-pytd-configure">
+<span id="config-all-in-one"></span><h3>The All-in-One Solution: <code class="docutils literal notranslate"><span class="pre">pyTD.configure</span></code><a class="headerlink" href="#the-all-in-one-solution-pytd-configure" title="Permalink to this headline">¶</a></h3>
+<p>pyTD provides the top-level function <code class="docutils literal notranslate"><span class="pre">pyTD.configure</span></code> which handles all
+configuration necessary to make an authenticated query.</p>
+<dl class="function">
+<dt id="pyTD.configure">
+<code class="descclassname">pyTD.</code><code class="descname">configure</code><span class="sig-paren">(</span><em>options=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyTD.configure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create new api given configuration options</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>options</strong> (<em>dict</em><em>, </em><em>optional</em>) – A pre-instantiated argument dictionary</li>
+<li><strong>consumer_key</strong> (<em>str</em><em>, </em><em>optional</em>) – OAuth ID of application</li>
+<li><strong>callback_url</strong> (<em>str</em><em>, </em><em>optional</em>) – Redirect URI of application</li>
+<li><strong>cache</strong> (<em>str</em><em>, </em><em>optional</em>) – Token cache (use for testing)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="configuring-user-agent">
+<span id="config-user-agent"></span><h2>Configuring User Agent<a class="headerlink" href="#configuring-user-agent" title="Permalink to this headline">¶</a></h2>
+<p id="config-default-api">There are three ways to configure your user agent:</p>
+<p>1. <strong>Let pyTD do it for you</strong>. So long as you have your <a class="reference internal" href="#configuration-directory"><span class="std std-ref">Configuration Directory</span></a> set up, simply run any pyTD function or method and pyTD will create
+an <code class="docutils literal notranslate"><span class="pre">api</span></code> object for you, defaulting to an on-disk token cache.</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyTD.market</span> <span class="k">import</span> <span class="n">get_quotes</span>
+
+<span class="n">get_quotes</span><span class="p">(</span><span class="s2">&quot;AAPL&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><strong>Create a non-global API object</strong></li>
+</ol>
+<p>Either pass the required parameters individually:</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyTD.api</span> <span class="k">import</span> <span class="n">api</span>
+<span class="kn">from</span> <span class="nn">pyTD.market</span> <span class="k">import</span> <span class="n">get_quotes</span>
+
+<span class="n">consumer_key</span> <span class="o">=</span> <span class="s2">&quot;TEST@AMER.OAUTHAP&quot;</span>
+<span class="n">callback_url</span> <span class="o">=</span> <span class="s2">&quot;https://localhost:8080&quot;</span>
+
+<span class="n">my_api</span> <span class="o">=</span> <span class="n">api</span><span class="p">(</span><span class="n">consumer_key</span><span class="o">=</span><span class="n">consumer_key</span><span class="p">,</span> <span class="n">callback_url</span><span class="o">=</span><span class="n">callback_url</span><span class="p">)</span>
+
+<span class="n">get_quotes</span><span class="p">(</span><span class="s2">&quot;AAPL&quot;</span><span class="p">,</span> <span class="n">api</span><span class="o">=</span><span class="n">my_api</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Or pass a pre-instantiated dictonary:</p>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyTD.api</span> <span class="k">import</span> <span class="n">api</span>
+<span class="kn">from</span> <span class="nn">pyTD.market</span> <span class="k">import</span> <span class="n">get_quotes</span>
+
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;consumer_key&quot;</span><span class="p">:</span> <span class="s2">&quot;TEST@AMER.OAUTHAP&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;callback_url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://localhost:8080&quot;</span>
+<span class="p">}</span>
+
+<span class="n">my_api</span> <span class="o">=</span> <span class="n">api</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+
+<span class="n">get_quotes</span><span class="p">(</span><span class="s2">&quot;AAPL&quot;</span><span class="p">,</span> <span class="n">api</span><span class="o">=</span><span class="n">my_api</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><strong>Use</strong> <code class="docutils literal notranslate"><span class="pre">pyTD.configure</span></code>:</li>
+</ol>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyTD</span> <span class="k">import</span> <span class="n">configure</span>
+<span class="kn">from</span> <span class="nn">pyTD.market</span> <span class="k">import</span> <span class="n">get_quotes</span>
+
+<span class="n">consumer_key</span> <span class="o">=</span> <span class="s2">&quot;TEST@AMER.OAUTHAP&quot;</span>
+<span class="n">callback_url</span> <span class="o">=</span> <span class="s2">&quot;https://localhost:8080&quot;</span>
+
+<span class="n">configure</span><span class="p">(</span><span class="n">consumer_key</span><span class="o">=</span><span class="n">consumer_key</span><span class="p">,</span> <span class="n">callback_url</span><span class="o">=</span><span class="n">callback_url</span><span class="p">)</span>
+
+<span class="n">get_quotes</span><span class="p">(</span><span class="s2">&quot;AAPL&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="the-api-object">
+<h3>The <code class="docutils literal notranslate"><span class="pre">api</span></code> object<a class="headerlink" href="#the-api-object" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">api</span></code> object serves as the user agent for all requests to the TD
+Ameritrade Developer API. The <code class="docutils literal notranslate"><span class="pre">api</span></code> object:</p>
+<ol class="arabic simple">
+<li>Manages configuration (directory, SSL, Consumer Key, Callback URL)</li>
+<li>Connects to the token cache</li>
+<li>Verifies, validates, and handles authentication and authorization.</li>
+</ol>
+<dl class="class">
+<dt id="pyTD.api.api">
+<em class="property">class </em><code class="descclassname">pyTD.api.</code><code class="descname">api</code><span class="sig-paren">(</span><em>options=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyTD.api.api" title="Permalink to this definition">¶</a></dt>
+<dd><p>User agent for authenticated TD Ameritrade HTTP requests</p>
+<dl class="attribute">
+<dt id="pyTD.api.api.options">
+<code class="descname">options</code><a class="headerlink" href="#pyTD.api.api.options" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>dict, optional</em> – Pre-instantiated dictionary of options</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyTD.api.api.consumer_key">
+<code class="descname">consumer_key</code><a class="headerlink" href="#pyTD.api.api.consumer_key" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – Your application’s OAuth ID</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyTD.api.api.callback_url">
+<code class="descname">callback_url</code><a class="headerlink" href="#pyTD.api.api.callback_url" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – Your application’s Redirect URI</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyTD.api.api.store_tokens">
+<code class="descname">store_tokens</code><a class="headerlink" href="#pyTD.api.api.store_tokens" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>bool, default True, optional</em> – Enables on-disk token cache if selected, which is default
+behavior. Disabled when access_token or refresh_token is
+passed</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyTD.api.api.cache">
+<code class="descname">cache</code><a class="headerlink" href="#pyTD.api.api.cache" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>MemCache or DiskCache, optional</em> – A pre-instantiated token cache</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyTD.api.api.retry_count">
+<code class="descname">retry_count</code><a class="headerlink" href="#pyTD.api.api.retry_count" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>int, default 3, optional</em> – Desired number of retries if a request fails</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyTD.api.api.pause">
+<code class="descname">pause</code><a class="headerlink" href="#pyTD.api.api.pause" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>float, default 0.5, optional</em> – Pause time between retry attempts</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyTD.api.api.session">
+<code class="descname">session</code><a class="headerlink" href="#pyTD.api.api.session" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>requests_cache.session, default None, optional</em> – A cached requests-cache session</p>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyTD</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">api</span> <span class="o">=</span> <span class="n">pyTD</span><span class="o">.</span><span class="n">api</span><span class="p">(</span><span class="n">consumer_key</span><span class="o">=</span><span class="s2">&quot;TEST@AMER.OAUTHAP&quot;</span><span class="p">,</span>
+<span class="go">                   callback_url=&quot;https://localhost:8080&quot;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">api</span><span class="o">.</span><span class="n">market</span><span class="o">.</span><span class="n">get_quote</span><span class="p">(</span><span class="s2">&quot;AAPL&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Attributes:</th><td class="field-body"><dl class="first last docutils">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">access_token</span></code></dt>
+<dd><p class="first last">Router to access token of cache</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">access_valid</span></code></dt>
+<dd><p class="first last">Validity of cache access token</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">auth_valid</span></code></dt>
+<dd><p class="first last">Validity of refresh token and access token</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">refresh_token</span></code></dt>
+<dd><p class="first last">Router to refresh token of cache</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">refresh_valid</span></code></dt>
+<dd><p class="first last">Validity of cache refresh token</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="66%" />
+<col width="34%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>handle_response</strong></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td><strong>refresh_auth</strong></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td><strong>request</strong></td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="configuring-logging">
+<span id="config-logging"></span><h2>Configuring Logging<a class="headerlink" href="#configuring-logging" title="Permalink to this headline">¶</a></h2>
+<p>pyTD uses Python’s <a class="reference external" href="https://docs.python.org/3/library/logging.html">logging</a> module to log its activity
+for both informational and debugging purposes.</p>
+<p>By default, a log is kept in pyTD’s <a class="reference internal" href="#configuration-directory"><span class="std std-ref">Configuration Directory</span></a> and named
+<code class="docutils literal notranslate"><span class="pre">pyTD.log</span></code>.</p>
+<div class="section" id="setting-the-logging-level">
+<h3>Setting the logging level<a class="headerlink" href="#setting-the-logging-level" title="Permalink to this headline">¶</a></h3>
+<p>The console logging level of pyTD can be set in one of three ways:</p>
+<ol class="arabic simple">
+<li><strong>Using</strong> <code class="docutils literal notranslate"><span class="pre">pyTD.log_level</span></code>:</li>
+</ol>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyTD</span>
+
+<span class="n">pyTD</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s2">&quot;DEBUG&quot;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><strong>Using</strong> <code class="docutils literal notranslate"><span class="pre">logging.setLevel</span></code>:</li>
+</ol>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;pyTD&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><strong>Using environment variables</strong></li>
+</ol>
+<p>The environment variable <code class="docutils literal notranslate"><span class="pre">TD_LOG_LEVEL</span></code> will override any log level settings for the console logger.</p>
+<div class="code bash highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">TD_LOG_LEVEL</span><span class="o">=</span><span class="s1">&#39;DEBUG&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="appendix">
+<span id="config-appendix"></span><h2>Appendix<a class="headerlink" href="#appendix" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="environment-variables">
+<h3>Environment Variables<a class="headerlink" href="#environment-variables" title="Permalink to this headline">¶</a></h3>
+<p>For reference, the following environment variables may be set to configure pyTD:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">TD_CONSUMER_KEY</span></code> (required) - TD Ameritrade Developer application OAUTH ID</li>
+<li><code class="docutils literal notranslate"><span class="pre">TD_CALLBACK_URL</span></code> (required) - TD Ameritrade Developer application Callback URL</li>
+<li><code class="docutils literal notranslate"><span class="pre">TD_CONFIG_DIR</span></code> - for specifying a custom pyTD configuration directory (defaults to ~/.tdm)</li>
+<li><code class="docutils literal notranslate"><span class="pre">TD_STORE_TOKENS</span></code> - set to false to disable on-disk authentication token
+caching</li>
+<li><code class="docutils literal notranslate"><span class="pre">TD_LOG_LEVEL</span></code> - for specifying a console logging level for pyTD</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="auth.html" class="btn btn-neutral float-right" title="Authentication" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="install.html" class="btn btn-neutral" title="Installing pyTD" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Addison Lynch.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

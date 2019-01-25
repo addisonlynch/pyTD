@@ -1,0 +1,352 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Instruments &mdash; pyTD  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Basics" href="tutorials/basics.html" />
+    <link rel="prev" title="Market Data" href="market.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pyTD
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installing pyTD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auth.html">Authentication</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Endpoints</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="market.html">Market Data</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Instruments</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#get-instrument">Get Instrument</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#search-instruments">Search Instruments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#projection"><code class="docutils literal notranslate"><span class="pre">projection</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/basics.html">Basics</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyTD</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Instruments</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/instruments.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="instruments">
+<span id="id1"></span><h1>Instruments<a class="headerlink" href="#instruments" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference external" href="https://developer.tdameritrade.com/instruments/apis">Instruments</a>
+endpoints allow for retrieval of instrument and fundamental
+data. These endpoints are <a class="reference external" href="https://developer.tdameritrade.com/instruments/apis/get/instruments">Search Instruments</a> and
+<a class="reference external" href="https://developer.tdameritrade.com/instruments/apis/get/instruments/%7Bcusip%7D">Get Instrument</a>.</p>
+<div class="section" id="get-instrument">
+<span id="instruments-get-instrument"></span><h2>Get Instrument<a class="headerlink" href="#get-instrument" title="Permalink to this headline">¶</a></h2>
+<p>pyTD provides access to Get Instruments through the <code class="docutils literal notranslate"><span class="pre">get_instrument</span></code>
+function. Simply enter a symbol:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">from</span> <span class="nn">pyTD.instruments</span> <span class="kn">import</span> <span class="n">get_instrument</span>
+
+<span class="gp">In [2]: </span><span class="n">get_instrument</span><span class="p">(</span><span class="s2">&quot;AAPL&quot;</span><span class="p">)</span>
+<span class="gh">Out[2]: </span><span class="go"></span>
+<span class="go">                                  AAPL</span>
+<span class="go">assetType                       EQUITY</span>
+<span class="go">cusip                        037833100</span>
+<span class="go">description  Apple Inc. - Common Stock</span>
+<span class="go">exchange                        NASDAQ</span>
+<span class="go">symbol                            AAPL</span>
+</pre></div>
+</div>
+<p>or a CUSIP ID:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [3]: </span><span class="n">get_instrument</span><span class="p">(</span><span class="s2">&quot;68389X105&quot;</span><span class="p">)</span>
+<span class="gh">Out[3]: </span><span class="go"></span>
+<span class="go">                                   68389X105</span>
+<span class="go">assetType                             EQUITY</span>
+<span class="go">cusip                              68389X105</span>
+<span class="go">description  Oracle Corporation Common Stock</span>
+<span class="go">exchange                                NYSE</span>
+<span class="go">symbol                                  ORCL</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="search-instruments">
+<span id="instruments-search-instruments"></span><h2>Search Instruments<a class="headerlink" href="#search-instruments" title="Permalink to this headline">¶</a></h2>
+<p>Search Instruments is implemented through <code class="docutils literal notranslate"><span class="pre">get_instruments</span></code>.</p>
+<div class="section" id="projection">
+<h3><code class="docutils literal notranslate"><span class="pre">projection</span></code><a class="headerlink" href="#projection" title="Permalink to this headline">¶</a></h3>
+<p>There are five types of searches which can be performed:</p>
+<p>1. <code class="docutils literal notranslate"><span class="pre">symbol-search</span></code> (default): Retrieve instrument data of a specific symbol
+or CUSIP
+(similar to <code class="docutils literal notranslate"><span class="pre">get_instrument</span></code>)</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [4]: </span><span class="kn">from</span> <span class="nn">pyTD.instruments</span> <span class="kn">import</span> <span class="n">get_instruments</span>
+
+<span class="gp">In [5]: </span><span class="n">get_instruments</span><span class="p">(</span><span class="s2">&quot;AAPL&quot;</span><span class="p">)</span>
+<span class="gh">Out[5]: </span><span class="go"></span>
+<span class="go">                                  AAPL</span>
+<span class="go">assetType                       EQUITY</span>
+<span class="go">cusip                        037833100</span>
+<span class="go">description  Apple Inc. - Common Stock</span>
+<span class="go">exchange                        NASDAQ</span>
+<span class="go">symbol                            AAPL</span>
+</pre></div>
+</div>
+<p>2. <code class="docutils literal notranslate"><span class="pre">symbol-regex</span></code>: Retrieve instrument data for all symbols matching regex.
+Example: <code class="docutils literal notranslate"><span class="pre">symbol=XYZ.*</span></code> will return all symbols beginning with XYZ</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [6]: </span><span class="n">get_instruments</span><span class="p">(</span><span class="s2">&quot;AAP.*&quot;</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;symbol-regex&quot;</span><span class="p">)</span>
+<span class="gh">Out[6]: </span><span class="go"></span>
+<span class="go">            ...</span>
+<span class="go">assetType   ...</span>
+<span class="go">cusip       ...</span>
+<span class="go">description ...</span>
+<span class="go">exchange    ...</span>
+<span class="go">symbol      ...</span>
+
+<span class="go">[5 rows x 13 columns]</span>
+</pre></div>
+</div>
+<p>3. <code class="docutils literal notranslate"><span class="pre">desc-search</span></code>: Retrieve instrument data for instruments whose description
+contains the word supplied. Example: <code class="docutils literal notranslate"><span class="pre">symbol=FakeCompany</span></code> will return all
+instruments with FakeCompany in the description.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [7]: </span><span class="n">get_instruments</span><span class="p">(</span><span class="s2">&quot;computer&quot;</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;desc-search&quot;</span><span class="p">)</span>
+<span class="gh">Out[7]: </span><span class="go"></span>
+<span class="go">                                                     CMDXF                                               CPSI                    CSCWI                                        CSVI                                               CTG                                            CMSQF                                 CMSQY</span>
+<span class="go">assetType                                           EQUITY                                             EQUITY                   EQUITY                                      EQUITY                                            EQUITY                                           EQUITY                                EQUITY</span>
+<span class="go">cusip                                            205249105                                          205306103                205363112                                   20539A105                                         205477102                                        Q2721E105                             20557R105</span>
+<span class="go">description  Computer Modelling Group Ordinary Shares (GM)  Computer Programs and Systems, Inc. - Common S...  Computer Sciences Corp.  Computer Services Inc Ky Common Stock (QX)  Computer Task Group, Incorporated - Common Stock  Computershare Ltd Aud 0.20 Ordinary Shares (PC)  Computershare Ltd Sponsored ADR (PC)</span>
+<span class="go">exchange                                        Pink Sheet                                             NASDAQ                     NYSE                                  Pink Sheet                                            NASDAQ                                       Pink Sheet                            Pink Sheet</span>
+<span class="go">symbol                                               CMDXF                                               CPSI                    CSCWI                                        CSVI                                               CTG                                            CMSQF                                 CMSQY</span>
+</pre></div>
+</div>
+<p>4. <code class="docutils literal notranslate"><span class="pre">desc-regex</span></code>: Search description with full regex support. Example:
+<code class="docutils literal notranslate"><span class="pre">symbol=XYZ.[A-C]</span></code> returns all instruments whose descriptions contain a word
+beginning with XYZ followed by a character A through C.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [8]: </span><span class="n">get_instruments</span><span class="p">(</span><span class="s2">&quot;COM.*&quot;</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;desc-regex&quot;</span><span class="p">)</span>
+<span class="gh">Out[8]: </span><span class="go"></span>
+<span class="go">            ...</span>
+<span class="go">assetType   ...</span>
+<span class="go">cusip       ...</span>
+<span class="go">description ...</span>
+<span class="go">exchange    ...</span>
+<span class="go">symbol      ...</span>
+
+<span class="go">[5 rows x 44 columns]</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><code class="docutils literal notranslate"><span class="pre">fundamental</span></code>: Returns fundamental data for a single instrument specified by exact symbol.</li>
+</ol>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [9]: </span><span class="n">get_instruments</span><span class="p">(</span><span class="s2">&quot;AAPL&quot;</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;fundamental&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="gh">Out[9]: </span><span class="go"></span>
+<span class="go">                       AAPL</span>
+<span class="go">beta                1.09174</span>
+<span class="go">bookValuePerShare   2.79895</span>
+<span class="go">currentRatio        1.12384</span>
+<span class="go">divGrowthRate3Year        0</span>
+<span class="go">dividendAmount         2.92</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tutorials/basics.html" class="btn btn-neutral float-right" title="Basics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="market.html" class="btn btn-neutral" title="Market Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Addison Lynch.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
