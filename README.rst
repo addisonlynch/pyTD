@@ -5,13 +5,13 @@ pyTD
 ====
 
 .. image:: https://travis-ci.org/addisonlynch/pytd.svg?branch=master
-    :target: https://travis-ci.org/addisonlynch/pytd
+    :target: https://travis-ci.org/addisonlynch/pyTD
 
 .. image:: https://codecov.io/gh/addisonlynch/pytd/branch/master/graphs/badge.svg?branch=master
-    :target: https://codecov.io/gh/addisonlynch/pytd
+    :target: https://codecov.io/gh/addisonlynch/pyTD
 
 .. image:: https://badge.fury.io/py/pytd.svg
-    :target: https://badge.fury.io/py/pytd
+    :target: https://badge.fury.io/py/pyTD
 
 .. image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
     :target: https://opensource.org/licenses/Apache-2.0
