@@ -3,9 +3,6 @@ import logging
 from pyTD.account.order import Order
 from pyTD.base import _pyTD_base
 
-ORDER = 'orders'
-SAVED_ORDER = 'savedOrders'
-TRANSACTION = 'transactions'
 
 logger = logging.getLogger(__name__)
 
@@ -26,12 +23,6 @@ class Account(_pyTD_base):
         ----------
         account_id: int or str
             TD Ameritrade account ID
-        retry_count: int, default 3, optional
-            Desired number of retries if a request fails
-        pause: float, default 0.5, optional
-            Pause time between retry attempts
-        session: requests_cache.session, default None, optional
-            A cached requests-cache session
         """
         super(Account, self).__init__(api)
         self.account_id = int(account_id)
@@ -48,7 +39,7 @@ class Account(_pyTD_base):
 
     @property
     def url(self):
-        return "%s/accounts/%s" % (self._BASE_URL, self.account_id)
+        return "%saccounts/%s" % (self._BASE_URL, self.account_id)
 
     def update_info(self):
         self.info = self.api.get(url=self.url)["securitiesAccount"]
@@ -69,7 +60,7 @@ class Account(_pyTD_base):
         pass
 
     def read(self):
-        return self.api.get(url=self.url, params=self.params)
+        return self.api.get(url=self.url)
 
     @property
     def type(self):

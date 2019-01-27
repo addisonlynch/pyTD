@@ -260,6 +260,15 @@ class api(object):
                                response=response)
         return json_data
 
+    def delete(self, url=None):
+        response = self.request("DELETE", url)
+        try:
+            json_data = response.json()
+        except ValueError:
+            raise TDQueryError(message="An error occurred during the query.",
+                               response=response)
+        return json_data
+
     def _check_status_codes(self, response):
         status = response.status_code
         logger.debug("RESPONSE TEXT (1st 200 chars): %s" % response.text[:200])
