@@ -59,7 +59,7 @@ class Quotes(MarketData):
 
     @auth_check
     def execute(self):
-        data = self.get()
+        data = self.api.get(url=self.url, params=self.params)
         if not data:
             raise ResourceNotFound(data, message="Quote for symbol %s not "
                                    "found." % self.symbols)

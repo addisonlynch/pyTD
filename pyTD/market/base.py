@@ -23,12 +23,12 @@
 import logging
 
 from pyTD.auth import auth_check
-from pyTD.resource import Get
+from pyTD.base import _pyTD_base
 
 logger = logging.getLogger(__name__)
 
 
-class MarketData(Get):
+class MarketData(_pyTD_base):
     """
     Base class for retrieving market-based information. This includes the
     following endpoint groups:
@@ -48,9 +48,10 @@ class MarketData(Get):
         A pyTD api object. If not passed, API requestor defaults to
         pyTD.api.default_api
     """
+
     def __init__(self, output_format='pandas', api=None):
         self.output_format = output_format
-        super(MarketData, self).__init__(api)
+        super(MarketData, self).__init__(api=api)
 
     @property
     def endpoint(self):
@@ -70,7 +71,7 @@ class MarketData(Get):
 
     @auth_check
     def execute(self):
-        out = self.get()
+        out = self.api.get(url=self.url, params=self.params)
         return self._output_format(out)
 
     def _output_format(self, out):

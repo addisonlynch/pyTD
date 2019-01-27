@@ -188,6 +188,16 @@ class api(object):
         """Validity of refresh token and access token"""
         return self.refresh_valid and self.access_valid
 
+    @property
+    def headers(self):
+        return {
+            "content-type": "application/json"
+        }
+
+    @property
+    def data(self):
+        return {}
+
     def __str__(self):
         FMT = "API(consumer_key: %s, callback_url: %s, config: %s)"
         return FMT % (self.consumer_key, self.callback_url, CONFIG_DIR)
@@ -202,14 +212,16 @@ class api(object):
         return "%s%s" % (MSG, DBG)
 
     def request(self, method, url, **kwargs):
-        headers = kwargs.pop("headers", {})
+        headers = kwargs.pop("headers", self.headers)
         headers.update({'authorization': self._auth_header})
-        params = kwargs.pop("params", {})
+        params = kwargs.pop("params", None)
+        params = params or {}
         params.update({"apikey": self.consumer_key})
         status_check = kwargs.pop("status", None)
 
         logger.debug("%s %s - %s" % (bprint("REQUEST:"), method, url))
         logger.debug("PARAMS: %s" % params)
+        logger.debug("HEADERS: %s" % headers)
 
         if "data" in kwargs:
             logger.debug("BODY: %s" % kwargs["data"])
@@ -224,6 +236,29 @@ class api(object):
 
         # Return the failed response anyway
         return self.handle_response(response, status_check)
+
+    def get(self, url=None, params=None):
+        response = self.request("GET", url=url, params=params)
+
+        # Convert GET requests to JSON
+        try:
+            json_data = response.json()
+        except ValueError:
+            raise TDQueryError(message="An error occurred during the query.",
+                               response=response)
+        if "error" in json_data:
+            raise TDQueryError(response=response)
+        return json_data
+
+    def post(self, url=None, params=None, data=None):
+        response = self.request("POST", url, data=data)
+
+        try:
+            json_data = response.json()
+        except ValueError:
+            raise TDQueryError(message="An error occurred during the query.",
+                               response=response)
+        return json_data
 
     def _check_status_codes(self, response):
         status = response.status_code

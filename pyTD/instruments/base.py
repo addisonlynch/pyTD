@@ -21,11 +21,11 @@
 # SOFTWARE.
 
 from pyTD.auth import auth_check
-from pyTD.resource import Get
+from pyTD.base import _pyTD_base
 from pyTD.utils.exceptions import ResourceNotFound
 
 
-class Instruments(Get):
+class Instruments(_pyTD_base):
     """
     Class for retrieving instruments
     """
