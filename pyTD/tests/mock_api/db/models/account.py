@@ -134,6 +134,8 @@ class Account(Base):
                                    back_populates="account")
     projectedBalances = relationship(ProjectedBalances, uselist=False,
                                      back_populates="account")
+    client_id = Column(Integer, ForeignKey('client.client_id'))
+    client = relationship("Client", back_populates='account')
 
 
 if __name__ == "__main__":

@@ -20,29 +20,55 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from functools import wraps
 import json
 
 from db.engine import session
 from db.models import (Account, CurrentBalances, InitialBalances,
-                       ProjectedBalances)
+                       ProjectedBalances, Client, Token)
 from db.orm import AccountSchema
 
-from flask import jsonify, request
-from flask_restful import (Resource, abort)
+from flask import jsonify, request, render_template
+from flask_restful import (Resource, abort, reqparse)
+
+
+# def auth_check(f):
+#     @wraps(f)
+#     def decorated_function(*args, **kwargs):
+
+#     return decorated_function
 
 
 class AccountResource(Resource):
 
+    # @auth_check
     def get(self, account_id):
+
+        access_token = request.headers.get("authorization")
+        token_set = session.query(Token).\
+                            filter_by(access_token=access_token).\
+                            first()
+        if not token_set:
+            abort(403, message="Invalid auth token.")
+        if not token_set.access_valid:
+            return abort(403, message="Invalid auth token.")
+        client_id = token_set.client_id
+        client = session.query(Client).\
+                         filter_by(client_id=client_id).\
+                         first()
+        if client.account.accountId != int(account_id):
+            return abort(401, message="Not authorized.")
         accounts = session.query(Account).\
                            filter(Account.accountId == account_id).\
                            first()
+
 
         if not accounts:
             abort(404, message="Account %s doesn't exist." % account_id)
         schema = AccountSchema()
         return schema.dump(accounts)
 
+    # @auth_check
     def post(self, account_id):
         json_data = request.get_json(force=True)
 
@@ -78,3 +104,25 @@ class AccountResource(Resource):
 
         schema = AccountSchema()
         return schema.dumps(account)
+
+
+# class AuthResource(Resource):
+
+#     def get(*args, **kwargs):
+#         """
+#         Renders page for user to confirm the grant
+#         """
+#         parser = reqparse.RequestParser()
+#         parser.add_argument('client_id', type=str, help="Client ID")
+#         args = parser.parse_args()
+
+#         client_id = args.get('client_id')
+#         client = Client.query.filter_by(client_id=client_id).first()
+#         return render_template('oauthorize.html', **kwargs)
+
+#     def post(*args, **kwargs):
+#         """
+#         Returns if user grants access or not
+#         """
+#         confirm = request.form.get('confirm', 'no')
+#         return confirm == 'yes'

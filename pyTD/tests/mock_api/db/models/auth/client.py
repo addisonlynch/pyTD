@@ -1,7 +1,9 @@
 from sqlalchemy import (Column, Integer, String, Text, Boolean, ForeignKey)
 from sqlalchemy.orm import relationship
 
+from db.models.account import Account
 from db.models.base import Base
+from db.models.auth.tokens import Token
 
 
 class Client(Base):
@@ -19,6 +21,12 @@ class Client(Base):
     # User information
     user_id = Column(ForeignKey('user.id'))
     user = relationship('User')
+
+    # Token information
+    tokens = relationship(Token, uselist=False, back_populates="client")
+
+    # Account informatin
+    account = relationship(Account, uselist=False, back_populates="client")
 
     # public or confidential
     is_confidential = Column(Boolean)
