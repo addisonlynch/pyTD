@@ -23,10 +23,11 @@
 from functools import wraps
 import json
 
+from db.models.auth import Token
 from db.engine import session
 from db.models import (Account, CurrentBalances, InitialBalances,
                        ProjectedBalances, Client, Token)
-from db.orm import AccountSchema
+from db.orm import AccountSchema, AuthTokenSchema
 
 from flask import jsonify, request, render_template
 from flask_restful import (Resource, abort, reqparse)
@@ -105,6 +106,53 @@ class AccountResource(Resource):
         schema = AccountSchema()
         return schema.dumps(account)
 
+
+class AuthResource(Resource):
+
+    @staticmethod
+    def verify_tokens(token, client_id):
+        """
+        Verify that a client is associated with a given access token
+
+        Parameters
+        ----------
+        token: str
+            Access token string
+        client_id: str
+            Client ID
+
+        Errors
+        ------
+        """
+        # Get the client associated with the token
+        token = session.query(Token)\
+                              .filter_by(client_id=client_id).first()
+
+        # Abort if no client associated with this token
+        if not token:
+            abort(401, message="Auth token not valid.")
+
+        # Returns the full token record
+        return token
+
+
+    def post(self, *args, **kwargs):
+        """
+        Post refresh token to receive access token
+        """
+        grant_type = request.form['grant_type']
+        refresh_token = request.form['refresh_token']
+        access_type = request.form['access_type']
+        client_id = request.form['client_id']
+        old_token = self.verify_tokens(refresh_token, client_id)
+        session.delete(old_token)
+        default_token = Token.generate_tokens()
+        default_token["client_id"] = client_id
+        new_token = Token(**default_token)
+        session.add(new_token)
+        session.commit()
+        schema = AuthTokenSchema()
+        return schema.dump(new_token)
 
 # class AuthResource(Resource):
 

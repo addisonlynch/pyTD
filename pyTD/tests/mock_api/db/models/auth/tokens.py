@@ -1,4 +1,5 @@
-from datetime import datetime
+from datetime import datetime, timedelta
+import time
 
 from sqlalchemy import (Column, ForeignKey, Integer, String, DateTime,
                         Text)
@@ -36,7 +37,7 @@ class Token(Base):
     refresh_token = Column(String(255), unique=True)
     access_expires = Column(DateTime)
     refresh_expires = Column(DateTime)
-    _scopes = Column(Text)
+    scope = Column(Text)
 
     def delete(self):
         session.delete(self)
@@ -45,9 +46,18 @@ class Token(Base):
 
     @staticmethod
     def generate_tokens():
-        refresh_token = uuid.uuid4().hex
-        access_token = uuid.uuid4().hex
-        return access_token, refresh_token
+        now = datetime.now()
+
+        d = {
+            "refresh_token": uuid.uuid4().hex,
+            "access_token": uuid.uuid4().hex,
+            "refresh_expires": now + timedelta(minutes=90),
+            "access_expires": now + timedelta(days=90),
+            "scope": "",
+            "token_type": "string"
+        }
+
+        return d
 
     @property
     def access_valid(self):

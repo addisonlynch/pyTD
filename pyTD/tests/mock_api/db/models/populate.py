@@ -27,13 +27,9 @@ account = {
 
 def add_client():
     new_client = Client(**client)
-    access_token, refresh_token = Token.generate_tokens()
-    access_expires = datetime.now() + timedelta(minutes=90)
-    refresh_expires = datetime.now() + timedelta(days=300)
-    new_tokens = Token(client_id=new_client.client_id,
-                       access_token=access_token, refresh_token=refresh_token,
-                       access_expires=access_expires,
-                       refresh_expires=refresh_expires)
+    default_tokens = Token.generate_tokens()
+    default_tokens["client_id"] = new_client.client_id
+    new_tokens = Token(**default_tokens)
     session.add(new_client)
     session.add(new_tokens)
     session.commit()

@@ -23,7 +23,7 @@
 from flask import Flask
 from flask_restful import Api
 
-from resources import AccountResource
+from resources import AccountResource, AuthResource
 
 
 def create_app():
@@ -39,7 +39,7 @@ app = create_app()
 api = Api()
 api.add_resource(AccountResource, '/v1/account/<account_id>',
                  endpoint='account')
-
+api.add_resource(AuthResource, '/v1/oauth2/token')
 
 # OAUTH INFO
 
